@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<h1>Home</h1>
+
+{% if user.is_authenticated %}
+    <h1>{{user.email}}</h1>
+{% endif %}
+{% endblock %}
