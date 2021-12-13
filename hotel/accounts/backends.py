@@ -7,7 +7,7 @@ class EmailBackend(ModelBackend):
         if email is None:
             email = kwargs.get(NewUser.USERNAME_FIELD)
         try:
-            user = NewUser._default_manager.get(**{'{}__iexact'.format(NewUser.USERNAME_FIELD): email})
+            user = NewUser._default_manager.get(email = email)
         except NewUser.DoesNotExist:
             NewUser().set_password(password)
         else:

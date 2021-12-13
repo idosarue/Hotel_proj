@@ -1,7 +1,8 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
-
+from django.contrib.auth import get_user_model
+from phonenumber_field.modelfields import PhoneNumberField
 
 class UserManager(BaseUserManager):
     def create_user(self, email, password, is_staff=False, is_admin=False, is_active=True):
@@ -77,3 +78,11 @@ class NewUser(AbstractBaseUser):
     @property
     def is_active(self):
         return self.active
+
+class Profile(models.Model):
+    user = models.OneToOneField(NewUser, on_delete=models.CASCADE)
+    date_of_birth = models.DateField(null=True)
+    phone_number = PhoneNumberField(unique=True, null=True)
+
+    def __str__(self):
+        return f'{self.user}' 
