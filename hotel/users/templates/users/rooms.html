@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<h1>rooms</h1>
+
+{% for room in rooms %}
+    {{room}}
+{% endfor %}
+    
+{% endblock %}

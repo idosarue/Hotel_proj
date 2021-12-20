@@ -9,11 +9,36 @@
 {% endblock %}
 
 {% block content %}
+
+
 <h1>Home</h1>
 
-{% if user.is_authenticated %}
-    <h1>{{user.email}}</h1>
-    <h2>{{user.username}}</h2>
-    <h3>{{user.profile.phone_number}}</h3>
-{% endif %}
+
+
+<form action="{% url 'rooms' %}" method='GET'>
+    {{form.as_p}}
+    {{formset.management_form}}
+    <div id="form_set">
+        {% for f in formset %}
+            {{ f.as_p }}
+        {% endfor %}
+    </div>
+
+    <input type="button" value="Add More" id="add_more">
+
+    <div id="empty_form" style="display:none">
+            {{ formset.empty_form.as_p }}
+    </div>
+<button class='btn btn-success' type="submit">Save</button>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY="crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $('#add_more').click(function() {
+    var form_idx = $('#id_form-TOTAL_FORMS').val();
+    $('#form_set').append($('#empty_form').html().replace(/__prefix__/g, form_idx));
+    $('#id_form-TOTAL_FORMS').val(parseInt(form_idx) + 1);});
+</script>
 {% endblock %}
+
+
