@@ -9,15 +9,15 @@ class Booking(models.Model):
     room = models.ForeignKey('Room', on_delete=models.PROTECT)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
  
-    def __str__(self):
-        return f'{self.room_type.name}'
+    # def __str__(self):
+    #     return f'{self.room_type.name}'
 
-    def is_vacant(self, start_date, end_date):
-        bookings = self.booking_set.exclude(check_out_date__lt=end_date, check_in_date__lt=start_date)
-        if not bookings.exists():
-            return True
-        else:
-            return False
+    # def is_vacant(self, start_date, end_date):
+    #     bookings = self.booking_set.exclude(check_out_date__lt=end_date, check_in_date__lt=start_date)
+    #     if not bookings.exists():
+    #         return True
+    #     else:
+    #         return False
 
 class CustomerPrice(models.Model):
     adult_price = models.IntegerField(default=100)
@@ -25,25 +25,38 @@ class CustomerPrice(models.Model):
 class RoomPrice (models.Model):
     price = models.IntegerField(default=700)
 
+    def __str__(self):
+        return f'{self.price}'
+
+class RoomType(models.Model):
+    name = models.CharField(max_length=50)
+    image = models.CharField(max_length=255)
+
 class Customer(models.Model):
     age = models.IntegerField(default=18)
     price_per_night = models.ForeignKey(CustomerPrice, on_delete=models.CASCADE)
 
-class Room(models.Model):
+
+class Room(models.Model): 
+    room_type = models.ForeignKey(RoomType, on_delete=models.CASCADE)
     room_price = models.ForeignKey(RoomPrice, on_delete=models.PROTECT, default=1)
     number_of_adult_beds = models.IntegerField(default=1)
-    number_of_children_beds = models.IntegerField(default=1)
+    number_of_children_beds = models.IntegerField(null=True)
     max_adults = models.IntegerField(default=1)
-    max_children = models.IntegerField(default=1)
+    max_children = models.IntegerField(null=True)
 
-class Suite(Room):
-    name = 'Suite'
+    def __str__(self):
+        return f'{self.room_type.name, self.room_price.price, self.number_of_adult_beds, self.number_of_children_beds}'
 
-class DoubleRoom(Room):
-    name = 'Double'
+    def is_vacant(self, start_date, end_date):
+        if self.booking_set.filter(check_out_date__gt=start_date, check_in_date__lt=end_date).exists():
+            return False
+        return True
 
-class SingleRoom(Room):
-    name = 'Single'
+
+# check out = 2021-12-22, start = 2021-12-21
+# check in = 2021-12-11, end = 2021-12-10
+
 
 
 class Info(models.Model):

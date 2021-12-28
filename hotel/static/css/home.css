@@ -1,0 +1,27 @@
+#form-set {
+    width: 60vw;
+}
+
+.room, .show-val-children, .show-val-adults, .con, #form-set {
+    display: flex;
+}
+
+.con {
+    width: 80%;
+    justify-content: space-between;
+}
+
+.show-val-children, .show-val-adults {
+    width: 30%;
+    align-items: center;
+}
+
+.room {
+    justify-content: space-between;
+    width: 50%;
+}
+
+#form-set, .show-val-children, .show-val-adults  {
+    flex-direction: column;
+}
+

@@ -3,3 +3,4 @@ __pycache__
 db.sqlite3
 env
 models_structure.txt
+local_testing

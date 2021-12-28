@@ -8,27 +8,47 @@
 
 {% endblock %}
 
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/home.css'%}">
+{% endblock %}
+
 {% block content %}
 
 
 <h1>Home</h1>
 
-
-
-<form action="{% url 'rooms' %}" method='GET'>
+<form id="bookingSearchForm" action="{% url 'rooms' %}" method='GET'>
     {{form.as_p}}
-    <div id="form_set">
-        <div id="room">
-            <input id='room-1-adults' name='room-1-adults' type="number" value="1">
-            <input id='room-1-children' name='room-1-children' type="number" value="0">
-            <label for="increment-1-adults">Adults</label>
-            <button class="increment" id="increment-1-adults" type="button">+</button>
-            <label for="increment-1-children">Children</label>
-            <button class="increment" id="increment-1-children" type="button">+</button>
-        </div>
+    <div id="form-set">
     </div>
-    <input type="button" value="Add More" id="add_more">
+
+    <div id="result"></div>
+    <input type="button" value="Add More" id="add-more">
 <button class='btn btn-success' type="submit">Save</button>
 </form>
 
 {% endblock %}
+
+<div class="room" id="room1">
+    <p class="room-title">Room 1</p>
+    <input id='room-1-adults' name='room-1-adults' type="hidden" value="1">
+    <input id='room-1-children' name='room-1-children' type="hidden" value="0">
+    <div class="show-val-adults">
+        <label for="increment-1-adults">Adults</label>
+        <div class="con">
+            <button class="increment increment-adults" id="increment-1-adults" type="button">+</button>
+            <span id="room-1-adults-val">1</span>
+            <button class="decrement decrement-adults" id="decrement-1-adults" type="button">-</button>
+        </div>
+    </div>
+    <div class="show-val-children">
+        <label for="increment-1-children">Children</label>
+        <div class="con"> 
+            <button class="increment increment-children" id="increment-1-children" type="button">+</button>
+            <span id='room-1-children-val'>0</span>
+            <button class="decrement decrement-children" id="decrement-1-children" type="button">-</button>
+        </div>
+    </div>
+    <button class='remove-room' id="remove-room1" type="button">Remove Room</button>
+
+</div>
