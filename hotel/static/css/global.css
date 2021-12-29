@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
+
+:root {
+    --dark-blue: #000B49;
+    --nav-border: solid 3px var(--dark-blue);
+    --button-border: solid 1px var(--dark-blue);
+    --button-color: #0e54a8
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Utility classes */
+.flex {
+    display: flex;
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.space-around {
+    justify-content: space-around;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+
+
+/* End of utility */
+body, html {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: rgba(255, 255, 255, 0.925);
+}
+
+
+
+.links {
+    width: 140px;
+    height: 70%;
+    align-items: center;
+}
+
+/* nav bar styling */
+
+nav {
+    position: fixed;
+    width: 100%;
+    height: 90px;
+    overflow: hidden;
+    display: flex;
+    top: 0;
+    padding: 0 20px 0 20px;
+    background-color: white;
+    z-index: 1;
+}
+
+
+.nav-container {
+    align-items: center;
+    width: 100%;
+    border-bottom: var(--nav-border);
+}
+
+#brand {
+    font-size: 1.5em;
+    border: var(--nav-border);
+    justify-content: center;
+
+}
+
+nav span {
+    width: 2px;
+    height: 60%;
+    background-color: black;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+}
+
+.sign-up a {
+    transition: 0.6s;
+}
+
+.sign-up a:hover {
+    transition: 0.6s;
+    opacity: 0.9;
+    transform: scale(1.2);
+}

@@ -13,42 +13,87 @@
 {% endblock %}
 
 {% block content %}
+<main>
+    <div class="form-container flex flex-center">
+        <form id="bookingSearchForm" action="{% url 'rooms' %}" method='GET'>
+            <div class="date-container flex">
+                <div class="dates flex">
+                    <div class="start-date flex">
+                        <div class="day">28</div>
+                        <div class="month flex flex-column">
+                            <span class="month-name">DEC</span>
+                            <span class="week-day">TUE</span>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="end-date flex">
+                        <div class="day">29</div>
+                        <div class="month flex flex-column">
+                            <span class="month-name">DEC</span>
+                            <span class="week-day">WED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="room-summary flex">
+                    <button type='button' class="guests flex flex-center">
+                        1 Room 1 Guest
+                    </button>
+                    <div class="room-container flex space-between">
+                        <input type="hidden" name="" id="">
+                        <input type="hidden" name="" id="">
+                        <div id="form-set">
+
+                        </div>
+                        <div class="add-container">
+                            <button class="increment" type="button" id="add-more">+</button>Add Room
+                        </div> 
+                    </div>
+                    <button class='btn' type="submit">Find a booking</button>
+                </div>
+            </div>
 
 
-<h1>Home</h1>
 
-<form id="bookingSearchForm" action="{% url 'rooms' %}" method='GET'>
-    {{form.as_p}}
-    <div id="form-set">
+        </form>
     </div>
 
-    <div id="result"></div>
-    <input type="button" value="Add More" id="add-more">
-<button class='btn btn-success' type="submit">Save</button>
-</form>
+    <div class="offers flex flex-center">
+        Sign up to get exclusive offers!
+    </div>
+
+
+    <section>
+        <div class="img-container">
+            <img class="main-image" src="{% static 'images/backghotel.jpg' %}" alt="">
+
+            <div class="img-text">
+                <p class="img-text-header">Lorem ipsum dolor sit.</p>
+                <p class="img-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora, deleniti!</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <p class="img-text-header">Lorem ipsum dolor sit.</p>
+            <div class="img-grid">
+                <div><img src="{% static 'images/backghotel.jpg' %}" alt=""></div>
+                <div><img src="{% static 'images/backghotel.jpg' %}" alt=""></div>
+                <div><img src="{% static 'images/backghotel.jpg' %}" alt=""></div>
+                <div><img src="{% static 'images/backghotel.jpg' %}" alt=""></div>
+                <div><img src="{% static 'images/backghotel.jpg' %}" alt=""></div>
+                <div><img src="{% static 'images/backghotel.jpg' %}" alt=""></div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="flex flex-center">
+    <div class="links flex space-around">
+        <a class='contact' target="blank" href="https://github.com/idosarue"><i class="fab fa-github"></i></a>
+        <a class='contact' target="blank" href="https://www.linkedin.com/in/ido-sarue-66aa79214/"><i class="fab fa-linkedin"></i></a>
+    </div>
+</footer>
 
 {% endblock %}
-
-<div class="room" id="room1">
-    <p class="room-title">Room 1</p>
-    <input id='room-1-adults' name='room-1-adults' type="hidden" value="1">
-    <input id='room-1-children' name='room-1-children' type="hidden" value="0">
-    <div class="show-val-adults">
-        <label for="increment-1-adults">Adults</label>
-        <div class="con">
-            <button class="increment increment-adults" id="increment-1-adults" type="button">+</button>
-            <span id="room-1-adults-val">1</span>
-            <button class="decrement decrement-adults" id="decrement-1-adults" type="button">-</button>
-        </div>
-    </div>
-    <div class="show-val-children">
-        <label for="increment-1-children">Children</label>
-        <div class="con"> 
-            <button class="increment increment-children" id="increment-1-children" type="button">+</button>
-            <span id='room-1-children-val'>0</span>
-            <button class="decrement decrement-children" id="decrement-1-children" type="button">-</button>
-        </div>
-    </div>
-    <button class='remove-room' id="remove-room1" type="button">Remove Room</button>
-
-</div>

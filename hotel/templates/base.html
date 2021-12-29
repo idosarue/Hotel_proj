@@ -14,6 +14,9 @@
     {% block title %}
     <title>Document</title>
     {% endblock %}
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{% static 'css/global.css'%}">
     {% block style %}
 
     {% endblock %}
@@ -30,7 +33,7 @@
     {% block script %}
     {% endblock %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="{% static 'js/script.js' %}" type="module"></script>
+    <script src="{% static 'js/main.js' %}" type="module"></script>
     <script src="{% static 'js/formValidation.js' %}" ></script>
 </body>
 </html>

@@ -1,27 +1,234 @@
-#form-set {
-    width: 60vw;
+/* main content */
+main {
+    margin-top: 100px;
 }
 
-.room, .show-val-children, .show-val-adults, .con, #form-set {
-    display: flex;
+/* Form */
+
+
+
+.form-container {
+    height: 120px;
 }
+
+form {
+    width: 100%;
+}
+
+#form-set {
+    width: 30vw;
+}
+
+/* Dates display */
+
+.room-summary {
+    justify-content: space-between;
+    align-items: center;
+    width: 35%;
+    height: 70px;
+    position: relative;
+    padding-right: 5em;
+}
+
+
+.guests, .btn {
+    height: 40px;
+    width: 200px;
+    border: var(--button-border);
+    border-radius: 3px;
+    
+    cursor: pointer;
+    font-family: inherit;
+
+}
+
+.guests {
+    background: white;
+}
+
+.guests-summary, .btn {
+    cursor: pointer;
+}
+
+.guests:focus, .increment:focus, .decrement:focus {
+    border: 2px solid var(--dark-blue);
+    box-shadow: inset 0 0 2px var(--dark-blue);
+}
+
+
+.btn {
+    background-color: var(--button-color);
+    color: white;
+    font-size: 1em;
+}
+
+.date-container {
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.dates {
+    justify-content: space-evenly;
+    align-items: center;
+    width: 300px;
+    cursor: pointer;
+
+}
+
+.day {
+    font-size: 3em;
+}
+
+.month {
+    justify-content: center;
+}
+
+.divider {
+    width: 3px;
+    height: 50px;
+    background-color: aquamarine;
+}
+
+/* Rooms Display */
 
 .con {
-    width: 80%;
-    justify-content: space-between;
+    width: 80px;
+    justify-content: space-around;
 }
 
-.show-val-children, .show-val-adults {
-    width: 30%;
-    align-items: center;
+
+
+/* Offer bar */
+
+.offers {
+    background-color: rgb(0,156,222);
+    height: 80px;
+    font-size: 1.3em;
+    color: white;
+    font-weight: 600;
+}
+
+/* Main image */
+
+.img-container {
+    margin-top: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+.main-image {
+    width: 90%;
+    height: 80vh;
+    border-radius: 3px;
+}
+
+/* Main image text */
+
+.img-text {
+    line-height: 0.5;
+}
+
+.img-text-header{
+    color: var(--button-color);
+    font-size: 2em;
+    font-weight: bold;
+}
+
+/* Image grid */
+
+.container {
+    padding: 5vw;
+}
+
+.img-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 15px;
+}
+
+
+.img-grid div img {
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+}
+
+.img-grid div {
+    position: relative;
+    z-index: 0;
+}
+
+.img-grid div::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: black;
+    opacity: 0.3;
+}
+
+/* footer */
+
+footer {
+    height: 100px;
+    width: 100%;
+    background-color: var(--dark-blue);
+}
+
+.contact {
+    color: white;
+    font-size: 2em;
+}
+
+
+/* Form pop up */
+
+.room-container {
+    display: none;
+    position: absolute;
+    /* right: 7.3vw; */
+    left: 0;
+    top: 55px;
+    background-color: white;
+    border: solid 0.3px lightgrey;
+    border-radius: 3px;
+    box-shadow: 0 0 2.6px;
 }
 
 .room {
-    justify-content: space-between;
-    width: 50%;
+    justify-content: space-around;
+    border-bottom: solid 0.3px lightgrey;
 }
 
-#form-set, .show-val-children, .show-val-adults  {
-    flex-direction: column;
+.remove-room {
+    align-self: center;
+    font-size: 1.5em;
+    color: var(--button-color);
+    font-weight: 100;
 }
 
+.increment, .decrement {
+    border-radius: 50%;
+    width: 30px;
+    padding-bottom: .3em;
+    font-size: 1.2em;
+    padding-bottom: 3px;
+    background-color: white;
+    border: 1px solid;
+    color: var(--button-color);
+    cursor: pointer;
+}
+
+.disabled {
+    opacity: 0.9;
+    color: grey;
+    cursor: not-allowed;
+}
+
+.add-container, .room {
+    padding: 10px;
+}
