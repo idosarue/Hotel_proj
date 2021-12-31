@@ -50,7 +50,7 @@ form {
     cursor: pointer;
 }
 
-.guests:focus, .increment:focus, .decrement:focus {
+.guests:focus, .increment:focus, .increment-rooms:focus, .decrement:focus {
     border: 2px solid var(--dark-blue);
     box-shadow: inset 0 0 2px var(--dark-blue);
 }
@@ -211,7 +211,7 @@ footer {
     font-weight: 100;
 }
 
-.increment, .decrement {
+.increment, .increment-rooms, .decrement {
     border-radius: 50%;
     width: 30px;
     padding-bottom: .3em;

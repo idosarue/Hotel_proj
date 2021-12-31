@@ -39,19 +39,25 @@ function createRoom(num){
     return newRoom
 }
 
-// Remove Room Button to append
-
+// Global variables
+let num = $('.room').length
+let roomNum = parseInt($('#room-counter').text().match(/\d/g))
+let guestsCounter = $('#guests-counter') 
+let roomsCounter = $('#room-counter') 
 
 // Append the initial room
 let formSet = $('#form-set')
 formSet.append(createRoom(1))
-let num = $('.room').length
 
 
 // Add a room on click
 $('#add-more').click(function() {
-    num ++
-    formSet.append(createRoom(num))
+    let guestsNum = parseInt($('#guests-counter').text().match(/\d/g))
+    roomNum++
+    guestsNum++
+    roomsCounter.text(`${roomNum} Rooms`)
+    guestsCounter.text(`${guestsNum} Guests`)
+    formSet.append(createRoom(roomNum))
     $('.remove-room').removeClass('hidden')
 });
 
@@ -61,10 +67,11 @@ $('#add-more').click(function() {
 $(document).on('click', '.increment', (e) => {
     let form = $(e.target).parent().children('input')
     let span = $(e.target).parent().children('span')
-    console.log(form, 'form')
-    console.log(e.target, 'targer')
     let currentFormVal = parseInt(form.val())
     currentFormVal += 1
+    let guestsNum = parseInt($('#guests-counter').text().match(/\d/g))
+    guestsNum++
+    guestsCounter.text(`${guestsNum} Guests`)
     form.val(currentFormVal)
     span.text(currentFormVal)
     let adultSpans = $('.show-val-adults.flex-column.flex-center span')
@@ -82,7 +89,10 @@ $(document).on('click', '.decrement', (e) => {
     let form = $(e.target).parent().children('input')
     let span = $(e.target).parent().children('span')
     let currentFormVal = parseInt(form.val())
+    let guestsNum = parseInt($('#guests-counter').text().match(/\d/g))
     currentFormVal -= 1
+    guestsNum--
+    guestsCounter.text(`${guestsNum} Guests`)
     form.val(currentFormVal)
     span.text(currentFormVal)
     let adultSpans = $('.show-val-adults.flex-column.flex-center span')
@@ -101,17 +111,21 @@ $(document).on('click', '.decrement', (e) => {
 $(document).on('click', '.remove-room', (e) => {
     if ($('.room').length == 1) return 
     $(e.target).parent().remove()
-
     let rooms = $('.room')
+    let vals = 0
     for (let i = 0; i < rooms.length; i++){
         $(rooms[i]).children('p').text(`Room ${i + 1}`)
+        vals += parseInt($(rooms[i]).children('.show-val-adults').children('.con').children('.adults-input').val())
+        vals += parseInt($(rooms[i]).children('.show-val-children').children('.con').children('.children-input').val())
         $(rooms[i]).children('.show-val-adults').children('.con').children('.adults-input').attr('id', `room-${i+1}-adults`).attr('name', `room-${i+1}-adults`)
         $(rooms[i]).children('.show-val-children').children('.con').children('.children-input').attr('id', `room-${i+1}-children`).attr('name', `room-${i+1}-children`)
     }
+    
     num = rooms.length
-
+    roomNum--
+    roomsCounter.text(`${roomNum} Rooms`)
+    guestsCounter.text(`${vals} Guests`)
     if (num == 1) $('.remove-room').addClass('hidden')
-
 })
 
 
@@ -133,3 +147,6 @@ $(document).click((e) => {
         }
     }
 })
+
+// Disply the guests and room amount
+
