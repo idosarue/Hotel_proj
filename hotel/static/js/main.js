@@ -7,52 +7,27 @@ disableAdultsIncrementButton,
 disableChildrenIncrementButton, 
 enableAdultsIncrementButton,
 enableChildrenIncrementButton,
+createRoom,
 } from './utilityFunctions.js'
 
 
 // Room object to append
-function createRoom(num){
-    let newRoom = 
-    `<div class="room flex" id="room${num}">
-        <div class="far fa-times-circle remove-room hidden" id="remove-room${num}"></div>
-        <p>Room ${num}</p>
-        <div class="show-val-adults flex flex-column flex-center">
-            <label for="increment-${num}-adults">Adults</label>
-            <div class="con flex space-between">
-                <input class='adults-input' id='room-${num}-adults' name='room-${num}-adults' type="hidden" value="1">   
-                <button class="increment increment-adults" type="button">+</button>
-                <span>1</span>
-                <button class="decrement decrement-adults disabled" disabled='true' type="button">-</button>
-            </div>
-        </div>
-        <div class="show-val-children flex flex-column flex-center">
-            <label for="increment-${num}-children">Children</label>
-            <div class="con flex space-between">
-                <input class='children-input' id='room-${num}-children' name='room-${num}-children' type="hidden" value="0">
-                <button class="increment increment-children" type="button">+</button>
-                <span>0</span>
-                <button class="decrement decrement-children disabled" disabled='true' type="button">-</button>
-            </div>
-        </div>
-    </div>
-    `
-    return newRoom
-}
+
 
 // Global variables
 let num = $('.room').length
 let roomNum = parseInt($('#room-counter').text().match(/\d/g))
 let guestsCounter = $('#guests-counter') 
 let roomsCounter = $('#room-counter') 
+let formSet = $('#form-set')
 
 // Append the initial room
-let formSet = $('#form-set')
 formSet.append(createRoom(1))
 
 
 // Add a room on click
 $('#add-more').click(function() {
-    let guestsNum = parseInt($('#guests-counter').text().match(/\d/g))
+    let guestsNum = parseInt(guestsCounter.text().match(/\d/g))
     roomNum++
     guestsNum++
     roomsCounter.text(`${roomNum} Rooms`)
@@ -104,9 +79,6 @@ $(document).on('click', '.decrement', (e) => {
     enableChildrenIncrementButton(childSpans)
 })
 
-
-
-
 // Remove a room
 $(document).on('click', '.remove-room', (e) => {
     if ($('.room').length == 1) return 
@@ -129,9 +101,13 @@ $(document).on('click', '.remove-room', (e) => {
 })
 
 
-let roomContainer = $('.room-container')
+
+
 
 // Display the form
+let roomContainer = $('.room-container')
+
+
 $('.guests').click(() => {
     if (roomContainer.css('display') == 'none') return roomContainer.css('display', 'block')
     roomContainer.css('display', 'none')
@@ -147,6 +123,3 @@ $(document).click((e) => {
         }
     }
 })
-
-// Disply the guests and room amount
-

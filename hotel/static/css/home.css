@@ -43,7 +43,11 @@ form {
 }
 
 .guests {
-    background: white;
+    background: var(--white-bgc);
+}
+
+.guests span {
+    margin: 5px;
 }
 
 .guests-summary, .btn {
@@ -56,11 +60,6 @@ form {
 }
 
 
-.btn {
-    background-color: var(--button-color);
-    color: white;
-    font-size: 1em;
-}
 
 .date-container {
     align-items: center;
@@ -104,7 +103,7 @@ form {
     background-color: rgb(0,156,222);
     height: 80px;
     font-size: 1.3em;
-    color: white;
+    color: var(--white-bgc);
     font-weight: 600;
 }
 
@@ -180,7 +179,7 @@ footer {
 }
 
 .contact {
-    color: white;
+    color: var(--white-bgc);
     font-size: 2em;
 }
 
@@ -193,15 +192,15 @@ footer {
     /* right: 7.3vw; */
     left: 0;
     top: 55px;
-    background-color: white;
-    border: solid 0.3px lightgrey;
+    background-color: var(--white-bgc);
+    border: var(--grey-border);
     border-radius: 3px;
     box-shadow: 0 0 2.6px;
 }
 
 .room {
     justify-content: space-around;
-    border-bottom: solid 0.3px lightgrey;
+    border-bottom: var(--grey-border);
 }
 
 .remove-room {
@@ -217,7 +216,7 @@ footer {
     padding-bottom: .3em;
     font-size: 1.2em;
     padding-bottom: 3px;
-    background-color: white;
+    background-color: var(--white-bgc);
     border: 1px solid;
     color: var(--button-color);
     cursor: pointer;

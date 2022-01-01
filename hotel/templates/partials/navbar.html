@@ -3,9 +3,44 @@
         <div id="brand" class="links flex space-between">
             <a href="{% url 'home' %}">HOTEL</a>
         </div>
+
         <div class="sign-up links flex space-between">
-            <a href="{% url 'signup' %}">Sign Up</a><span></span><a href="{% url 'login' %}">Login</a>
+            {% if user.is_authenticated%}
+            <a href="{% url 'logout' %}">Logout {{user.username}}</a>
+            {% else %}
+            <a href="{% url 'signup' %}">Sign Up</a>
+            <span></span>
+            <a id="login-btn">Sign In</a>
+            {% endif %}
+
         </div>
         </div>
     </div>
 </nav>
+
+<div id="login-container" class="flex justify-center">
+    
+    <div id="login-popup">
+        <div id="login-header-container">
+            <i id="close-btn" class="fas fa-times"></i>
+            <h3 class="login-header">Sign In</h3>
+        </div>
+       <form id="login-form" action="{% url 'login' %}" method="POST">
+           {% csrf_token %}
+
+        <div id="field-container" class="flex flex-column">
+            {% for field in login_form %}
+            <div class="field form-control">
+                    <label for="{{field.id_for_label}}">{{field.label}}</label>
+                    {{field}}
+                </div>
+            {% endfor %}
+                <button class="btn-primary form-control" type="submit">Submit</button>
+        </div>
+
+        <div id="result"></div>
+        </form>
+    </div>
+</div>
+
+

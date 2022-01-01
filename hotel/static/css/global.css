@@ -4,7 +4,9 @@
     --dark-blue: #000B49;
     --nav-border: solid 3px var(--dark-blue);
     --button-border: solid 1px var(--dark-blue);
-    --button-color: #0e54a8
+    --button-color: #0e54a8;
+    --grey-border: solid 0.3px lightgrey;
+    --white-bgc: white
 }
 
 * {
@@ -19,6 +21,10 @@
 .flex-center {
     justify-content: center;
     align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
 }
 
 .flex-column {
@@ -38,6 +44,21 @@
 }
 
 
+/* Forms */
+
+.form-control, .form-control > * {
+    width: 100%;
+    height: 43px;
+}
+
+
+.btn-primary {
+    background-color: var(--button-color);
+    color: var(--white-bgc);
+    font-size: 1em;
+    font-family: inherit;
+    border: none;
+}
 
 
 
@@ -66,7 +87,7 @@ nav {
     display: flex;
     top: 0;
     padding: 0 20px 0 20px;
-    background-color: white;
+    background-color: var(--white-bgc);
     z-index: 1;
 }
 
@@ -95,6 +116,10 @@ nav a {
     color: black;
 }
 
+.links a {
+    cursor: pointer;
+}
+
 .sign-up a {
     transition: 0.6s;
 }
@@ -103,4 +128,84 @@ nav a {
     transition: 0.6s;
     opacity: 0.9;
     transform: scale(1.2);
+}
+
+
+/* Login Pop up */
+
+#login-container {
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    padding-top: 30px;
+    position: fixed;
+    z-index: 1;
+    background-color: rgba(0,0,0,0.4);
+}
+
+#login-popup {
+    width: 30vw;
+    height: 70vh;
+    background-color: var(--white-bgc);
+    border-radius: 5px;
+    padding-left: 1em;
+    padding-right: 1em;
+    opacity: 1;
+}
+
+#login-header-container {
+    padding-top: 10px;
+}
+
+.login-header {
+    text-align: center;
+    border-bottom: var(--grey-border);
+    padding-bottom: 10px;
+}
+
+/* Login Form */
+
+#login-form {
+    height: 80%;
+}
+
+#field-container {
+    height: 70%;
+    justify-content: space-evenly;
+}
+
+.field input {
+    border: var(--grey-border);
+    font-size: inherit;
+    font-family: inherit;
+}
+
+.field input:focus {
+    border: 2px solid var(--dark-blue);
+    box-shadow: inset 0 0 2px var(--dark-blue);
+}
+
+
+#close-btn {
+    cursor: pointer;
+    float: right;
+}
+
+/* Media queries */
+
+@media only screen and (max-width: 1000px) {
+    #login-popup {
+        width: 50%;
+        height: 70vh;
+        z-index: 23;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    #login-popup {
+        width: 100%;
+        height: 70vh;
+        z-index: 23;
+    }
 }

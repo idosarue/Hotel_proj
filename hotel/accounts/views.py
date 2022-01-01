@@ -6,7 +6,7 @@ from django.views.generic.edit import CreateView
 from .models import Profile
 from .forms import CustomUserCreationForm, ProfileForm
 from django.contrib import messages
-
+from django.http import JsonResponse
 
 
 class SignupView(CreateView):
@@ -35,6 +35,10 @@ class SignupView(CreateView):
         return context
 
 class UserLoginView(LoginView):
+
+    def form_invalid(self, form):
+        return JsonResponse({"error": form.errors}, status=400)
+        
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return redirect('home')

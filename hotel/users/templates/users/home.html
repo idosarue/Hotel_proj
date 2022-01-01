@@ -13,6 +13,8 @@
 {% endblock %}
 
 {% block content %}
+
+{% include 'partials/navbar.html' %}
 <main>
     <div class="form-container flex flex-center">
         <form id="bookingSearchForm" action="{% url 'rooms' %}" method='GET'>
@@ -37,11 +39,9 @@
 
                 <div class="room-summary flex">
                     <button type='button' class="guests flex flex-center">
-                        <span id="room-counter">1 Room</span><span id="guests-counter">1 Guest</span> 
+                        <span id="room-counter">1 Room</span> <span id="guests-counter">1 Guest</span> 
                     </button>
                     <div class="room-container flex space-between">
-                        <input type="hidden" name="" id="">
-                        <input type="hidden" name="" id="">
                         <div id="form-set">
 
                         </div>
@@ -49,7 +49,7 @@
                             <button class="increment-rooms" type="button" id="add-more">+</button>Add Room
                         </div> 
                     </div>
-                    <button class='btn' type="submit">Find a booking</button>
+                    <button class='btn btn-primary' type="submit">Find a booking</button>
                 </div>
             </div>
 
