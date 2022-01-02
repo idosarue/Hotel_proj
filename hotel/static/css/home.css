@@ -67,11 +67,10 @@ form {
 }
 
 .dates {
+    position: relative;
     justify-content: space-evenly;
     align-items: center;
     width: 300px;
-    cursor: pointer;
-
 }
 
 .day {
@@ -185,7 +184,6 @@ footer {
 
 
 /* Form pop up */
-
 .room-container {
     display: none;
     position: absolute;
@@ -222,12 +220,11 @@ footer {
     cursor: pointer;
 }
 
-.disabled {
-    opacity: 0.9;
-    color: grey;
-    cursor: not-allowed;
-}
+
 
 .add-container, .room {
     padding: 10px;
 }
+
+
+

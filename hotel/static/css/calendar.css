@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
+
+/* Calendar */
+
+.selected {
+    background: var(--button-color);
+    color: white;
+}
+
+.selected-check-out {
+    background: lightblue;
+}
+
+.calendar-popup {
+    background-color: var(--white-bgc);
+    border-radius: 5px;
+    padding: 0 .5em 1em .5em;
+    width: max-content;
+    justify-content: space-between;
+    top: 8.3vh;
+    left: 1.6em;    
+}
+
+
+.calendar {
+    text-align: center;
+    padding: 0 1em;
+    font-size: .9em;
+}
+
+
+#calendar-navigation {
+    width: 100%;
+    height: 5vh;
+}
+
+#calendar-navigation > p {
+    font-size: 2em;
+}
+
+.calendar h3 {
+    margin-bottom: 1px;
+}
+.weekdays, .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+
+.weekdays, .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.days {
+    grid-template-rows: repeat(6, 1fr);
+}
+
+.weekdays > div {
+    font-weight: bold;
+}
+
+.days > div, .weekdays > div {
+    padding: .3vw;
+}

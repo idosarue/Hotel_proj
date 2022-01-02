@@ -10,12 +10,21 @@
 
 {% block style %}
 <link rel="stylesheet" href="{% static 'css/home.css'%}">
+<link rel="stylesheet" href="{% static 'css/calendar.css'%}">
 {% endblock %}
 
 {% block content %}
 
 {% include 'partials/navbar.html' %}
 <main>
+    <!-- <div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
+        <label for="check_in_date">Check In</label>
+        <input id="check_in_date" type="text" name="check_in_date">
+        <label for="check_in_date">Check Out</label>
+        <input id="check_out_date" type="text" name="check_out_date">
+    </div> -->
+
+
     <div class="form-container flex flex-center">
         <form id="bookingSearchForm" action="{% url 'rooms' %}" method='GET'>
             <div class="date-container flex">
@@ -33,6 +42,38 @@
                         <div class="month flex flex-column">
                             <span class="month-name">DEC</span>
                             <span class="week-day">WED</span>
+                        </div>
+                    </div>
+                    <div class="calendar-popup flex flex-column popup">
+                        <div id="calendar-navigation" class="flex space-between items-center">
+                            <p class="prev disabled">&lt;</p>
+                            <p class="next">&gt;</p>
+                        </div>
+
+                        <div class="calendar-container flex">
+                            <div class="calendar">
+                                <div class="month">
+                                    <div class="date">
+                                        <h3></h3>
+                                    </div>
+                                </div>
+                                <div class="weekdays">
+                                </div>
+                                <div class="days">
+                                </div>
+                            </div>
+                            
+                            <div class="calendar second-calendar">
+                                <div class="second-cal-month month">
+                                    <div class="second-cal-date date">
+                                        <h3></h3>
+                                    </div>
+                                </div>
+                                <div class="second-cal-weekdays weekdays">
+                                </div>
+                                <div class="second-cal-days days">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -96,4 +137,12 @@
     </div>
 </footer>
 
+
+
+{% endblock %}
+
+
+
+{% block script %}
+<script src="{% static 'js/calendar.js' %}"></script>
 {% endblock %}

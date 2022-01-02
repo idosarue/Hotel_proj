@@ -39,10 +39,23 @@
     justify-content: space-around;
 }
 
+.items-center {
+    align-items: center;
+}
+
 .hidden {
     display: none;
 }
 
+.disabled {
+    opacity: 0.9;
+    color: grey;
+    cursor: not-allowed;
+}
+
+.clickable {
+    cursor: pointer;
+}
 
 /* Forms */
 
@@ -61,6 +74,13 @@
 }
 
 
+.popup {
+    position: absolute;
+    background-color: var(--white-bgc);
+    border: var(--grey-border);
+    border-radius: 3px;
+    box-shadow: 0 0 2.6px;
+}
 
 /* End of utility */
 body, html {
@@ -68,7 +88,6 @@ body, html {
     font-family: 'Poppins', sans-serif;
     background-color: rgba(255, 255, 255, 0.925);
 }
-
 
 
 .links {
@@ -143,6 +162,8 @@ nav a {
     z-index: 1;
     background-color: rgba(0,0,0,0.4);
 }
+
+
 
 #login-popup {
     width: 30vw;
