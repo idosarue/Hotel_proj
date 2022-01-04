@@ -18,31 +18,35 @@
 {% include 'partials/navbar.html' %}
 <main>
     <!-- <div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
-        <label for="check_in_date">Check In</label>
-        <input id="check_in_date" type="text" name="check_in_date">
-        <label for="check_in_date">Check Out</label>
-        <input id="check_out_date" type="text" name="check_out_date">
+        <form method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+        </form>
     </div> -->
 
 
     <div class="form-container flex flex-center">
         <form id="bookingSearchForm" action="{% url 'rooms' %}" method='GET'>
+            {{form.as_p}}
             <div class="date-container flex">
+                
                 <div class="dates flex">
                     <div class="start-date flex">
-                        <div class="day">28</div>
-                        <div class="month flex flex-column">
+                        <div id="check-in-day" class="day">28</div>
+                        <div id="check-in-month" class="month flex flex-column">
                             <span class="month-name">DEC</span>
                             <span class="week-day">TUE</span>
                         </div>
                     </div>
                     <div class="divider"></div>
                     <div class="end-date flex">
-                        <div class="day">29</div>
-                        <div class="month flex flex-column">
+                        <div id="check-out-day" class="day">29</div>
+                        <div id="check-out-month" class="month flex flex-column">
                             <span class="month-name">DEC</span>
                             <span class="week-day">WED</span>
                         </div>
+
+                        <div id="date-overlay" class="clickable"></div>
                     </div>
                     <div class="calendar-popup flex flex-column popup">
                         <div id="calendar-navigation" class="flex space-between items-center">
@@ -51,7 +55,7 @@
                         </div>
 
                         <div class="calendar-container flex">
-                            <div class="calendar">
+                            <div class="first-calendar calendar">
                                 <div class="month">
                                     <div class="date">
                                         <h3></h3>

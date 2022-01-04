@@ -6,13 +6,13 @@ from .models import Room, RoomType
 
 def validate_dates(get_request):
     try:
-        check_in_date = datetime.strptime(get_request['check_in_date'], '%Y-%m-%d').date()
-        check_out_date = datetime.strptime(get_request['check_out_date'], '%Y-%m-%d').date()
+        check_in_date = datetime.strptime(get_request['check_in_date'], '%m/%d/%Y').date()
+        check_out_date = datetime.strptime(get_request['check_out_date'], '%m/%d/%Y').date()
     except (ValueError, KeyError):
         check_in_date = date.today()
         check_out_date = check_in_date + dt.timedelta(days=1)
-    if check_in_date < check_out_date: return {'check_in_date' : check_in_date, 'check_out_date' : check_out_date}
-    return {'check_in_date' : check_in_date, 'check_out_date' : check_in_date + dt.timedelta(days=1)}
+    if date.today() < check_in_date and check_in_date <  check_out_date and check_out_date > date.today(): return {'check_in_date' : check_in_date, 'check_out_date' : check_out_date}
+    return {'check_in_date' : date.today(), 'check_out_date' : date.today() + dt.timedelta(days=1)}
 
 
 def validate_guests(request, room_count):

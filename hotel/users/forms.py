@@ -15,8 +15,8 @@ class GuestsForm(forms.Form):
 
 
 class RoomsDateForm(forms.Form):
-    check_in_date = forms.DateField(widget=DateInput)
-    check_out_date = forms.DateField(widget=DateInput)
+    check_in_date = forms.CharField(widget=forms.HiddenInput(attrs={'id': 'check_in_date'}))
+    check_out_date = forms.DateField(widget=forms.HiddenInput(attrs={'id': 'check_out_date'}))
 
     def clean(self):
         data = self.cleaned_data

@@ -1,4 +1,7 @@
 // Display the room form
+
+const calLog = console.log.bind(console, "popups")
+
 let roomContainer = $('.room-container')
 
 
@@ -36,4 +39,19 @@ $(loginContainer).click((e) => {
             loginContainer.css('display', 'none')
         }
     }
+})
+
+
+$(document).click((e) => {
+    const calendarPopUp = $('.calendar-popup')
+    const target = e.target
+    // calLog(calendarPopUp.find($(target)))
+    if (e.target == $('#date-overlay')[0]){
+        if (calendarPopUp.css('display') == 'none') return calendarPopUp.css('display', 'block')
+        calendarPopUp.css('display', 'none')
+    }else if (calendarPopUp.find($(target)).length == 0){
+        calendarPopUp.css('display', 'none')
+    }
+
+    
 })

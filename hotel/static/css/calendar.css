@@ -18,7 +18,8 @@
     width: max-content;
     justify-content: space-between;
     top: 8.3vh;
-    left: 1.6em;    
+    left: 1.6em; 
+    display: none;   
 }
 
 

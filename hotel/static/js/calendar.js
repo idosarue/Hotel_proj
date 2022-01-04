@@ -1,11 +1,17 @@
+const log = console.log.bind(console,"calendar.html")
+
+// new date
 const date = new Date();
 let month = date.getMonth()
 
-const nowDate = new Date()
 
+// todays date
+const nowDate = new Date()
 const todayMonth = nowDate.getMonth()
 const todayYear = nowDate.getFullYear()
 
+
+// months names
 const months = [
     "January",
     "February",
@@ -21,13 +27,49 @@ const months = [
     "December",
 ]
 
+
+// week day names
 const weekDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
+// inputs
+const checkInInput = $('#check_in_date')
+const checkOutInput = $('#check_out_date')
+
+const displayDateHeaders = (checkIn, checkOut) => {
+    $("#check-in-day").text(checkIn.getDate())
+    $('#check-out-day').text(checkOut.getDate())
+    $("#check-in-month .month-name").text(months[checkIn.getMonth()].substring(0,3).toUpperCase())
+    $("#check-in-month .week-day").text(weekDays[checkIn.getDay()].toUpperCase())
+    $("#check-out-month .month-name").text(months[checkOut.getMonth()].substring(0,3).toUpperCase())
+    $("#check-out-month .week-day").text(weekDays[checkOut.getDay()].toUpperCase())
+}
+
+displayDateHeaders(date, new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1))
+
+
+// dusaply the date range on the calendars
+
+const displayDateRange = () => {
+    const x = $(`.calendar .days`).children()
+    for (let i =0; i <x.length; i++ ){
+        if ($(x[i]).attr('data-date') && $(x[i]).attr('data-date') == new Date(checkInInput.val()).toLocaleDateString()){
+            $(x[i]).addClass('selected')
+        } else if (new Date($(x[i]).attr('data-date')) <= new Date(checkOutInput.val()) && new Date($(x[i]).attr('data-date')) > new Date(checkInInput.val())) {
+            $(x[i]).addClass('selected-check-out')
+            log('selected-che')
+
+        }
+    }
+}
+
+
+
+let selectedDates = []
 
 // Create the first cal
-const createFirstCal = () => {
-    let days = ""
-    let displayWeekDays = ''
+const createCal = (calObject, date) => {
+    let days = []
+    let displayWeekDays = []
     
     // create the weekdays divs
     weekDays.forEach(element => displayWeekDays += `<div class="weekday">${element.toUpperCase()}</div>`)
@@ -46,79 +88,40 @@ const createFirstCal = () => {
         ).getDay()
 
 
-    $('.calendar .month .date h3').text(`${months[date.getMonth()]} ${date.getFullYear()}`)
+    $(`${calObject}.calendar .month .date h3`).text(`${months[date.getMonth()]} ${date.getFullYear()}`)
 
 
     // add empty divs for last months days  
     for (let i = 0; i <= previousLastDay; i++){
         // always start the dates on the first row
         if (previousLastDay <= 5){
-            days += '<div></div>'
+            days.push('<div></div>')
         }
     }
 
 
     for (let i = 1; i <= lastDay; i++){
-        
         if (i <= nowDate.getDate() && date.getMonth() == todayMonth && date.getFullYear() == todayYear ){
-            days += `<div data-date="${date.getMonth() + 1}/${i}/${date.getFullYear()}" class="disabled">${i}</div>`
+            days.push(`<div class="disabled">${i}</div>`)
         }else {
-            days += `<div data-date="${date.getMonth() + 1}/${i}/${date.getFullYear()}" class="clickable">${i}</div>`
+            days.push(`<div data-date="${date.getMonth() + 1}/${i}/${date.getFullYear()}" class="clickable">${i}</div>`)
         }
     }
 
-    $('.calendar .days').html(days)
+    $(`${calObject} .days`).html(days)
+
+    displayDateRange()
+
     $('.weekdays').html(displayWeekDays)
 }
-
-// Create the second cal
-const createSecondCal = () => {
-    const secondDate = new Date(date.getFullYear(), date.getMonth() + 1)
-    let days = ""
-
-    // get the last day of the month
-    const lastDay = new Date(
-        secondDate.getFullYear(),
-        secondDate.getMonth() + 1,
-        0
-    ).getDate();
-
-    // get the last weekday of the previous month
-    const previousLastDay = new Date(
-        secondDate.getFullYear(),
-        secondDate.getMonth(),
-        0
-        ).getDay()
-
-    // add empty divs for last months days 
-    for (let i = 0; i <= previousLastDay; i++){
-        // always start the dates on the first row
-        if (previousLastDay <= 5){
-            days += '<div></div>'
-        }
-    }
-
-
-    $('.second-calendar .month .date h3').text(`${months[secondDate.getMonth()]} ${secondDate.getFullYear()}`)
-
-
-    for (let i = 1; i <= lastDay; i++){
-        days += `<div data-date="${secondDate.getMonth() + 1}/${i}/${date.getFullYear()}" class="clickable">${i}</div>`
-    }
-  
-    
-    $('.second-calendar .days').html(days)
-    
-}
-
 
 // ***** Increase and decrease months *****
 
 // next month
 $('.next').click((e) => {
     date.setMonth(date.getMonth() + 1)
-    createFirstCal()
-    createSecondCal()
+    createCal('.first-calendar', date)
+    createCal('.second-calendar', new Date(date.getFullYear(), date.getMonth() + 1))
     $('.prev').removeClass('disabled')
 })
 
@@ -128,55 +131,57 @@ $('.prev').click((e) => {
     if(date.getFullYear() == todayYear && date.getMonth() - 1 == todayMonth) $('.prev').addClass('disabled')
     if(date.getFullYear() == todayYear && date.getMonth() == todayMonth) return
     date.setMonth(date.getMonth() - 1)
-    createFirstCal()
-    createSecondCal()     
+    createCal('.first-calendar', date)
+    createCal('.second-calendar', new Date(date.getFullYear(), date.getMonth() + 1))
 })
 
 
-// first calendar
-createFirstCal()
+// create the initial calendars
+createCal('.first-calendar', date)
+createCal('.second-calendar', new Date(date.getFullYear(), date.getMonth() + 1))
 
-// scond calendar
-createSecondCal()
+// *** add dates to form ****
+const validateDateForm = (checkInDate, checkOutDate) => {
+    $('.selected-check-out').removeClass('selected-check-out')
+    $('.selected').removeClass('selected')
+    let checkIn = checkInDate
+    let checkOut = checkOutDate
 
-
-// add dates to form
-const validateDateForm = () => {
-    const checkInDate = new Date($('#check_in_date').val())
-    const checkOutDate = new Date($('#check_out_date').val())
     if(checkOutDate <= checkInDate ) {
-        $('#check_in_date').val(checkInDate.toLocaleDateString())
-        $('#check_out_date').val(new Date(checkInDate.setDate(checkInDate.getDate() + 1)).toLocaleDateString())
-        return
+        checkOut = new Date(checkInDate.getFullYear(), checkInDate.getMonth(), checkInDate.getDate() + 1)
     }
-    $('#check_in_date').val(checkInDate.toLocaleDateString())
-    $('#check_out_date').val(checkOutDate.toLocaleDateString())
+
+    checkInInput.val(checkIn.toLocaleDateString())
+    checkOutInput.val(checkOut.toLocaleDateString())
+
+    displayDateRange()
+
+    displayDateHeaders(new Date(checkInInput.val()), new Date(checkOutInput.val()))
 }
 
 let counter = 0;
-$(document).on('click', '.clickable', (e) => {
-    console.log('clikc')
+$(document).on('click', '[data-date]', (e) => {
     counter++
+    let checkInDate
+    let checkOutDate
+
+    let checkInInput = $('#check_in_date')
     // alow 2 clicks 
-    if (counter == 3){
-        $('.selected').removeClass('selected')
-        $('.selected-check-out').removeClass('selected-check-out')
-        counter = 1
-    }  
-
-       
-    // for the first time a date is clicked the check out and check in will the same, so check out will be equel to the checkin + 1
-    
-    if (counter == 1) {
-        $('#check_in_date').val($(e.target).attr('data-date'))        
-        $(e.target).addClass('selected')
+    switch (counter) {
+        case 1:
+            checkInDate = new Date($(e.target).attr('data-date'))
+            validateDateForm(checkInDate, checkInDate)
+            break
+        case 2:
+            checkInDate = new Date(checkInInput.val())
+            checkOutDate = new Date($(e.target).attr('data-date'))
+            if (checkOutDate <= checkInDate){
+                validateDateForm(checkOutDate, checkOutDate)
+                counter = 1
+                break
+            }
+            validateDateForm(checkInDate, checkOutDate)
+            counter = 0
+            break;
     }
-
-    if (counter == 2){
-        $(e.target).addClass('selected-check-out')
-    }
-
-    // In the second time the value for the checkout is already stored in the check_in_date input, so we just get the value and pass in the new date that was clicked
-    $('#check_out_date').val($(e.target).attr('data-date'))
-    validateDateForm($('#check_in_date').val(), $(e.target).attr('data-date'))
 })
