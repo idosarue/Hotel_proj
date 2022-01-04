@@ -48,7 +48,7 @@
 }
 
 .disabled {
-    opacity: 0.9;
+    opacity: 0.6 ;
     color: grey;
     cursor: not-allowed;
 }
@@ -107,7 +107,7 @@ nav {
     top: 0;
     padding: 0 20px 0 20px;
     background-color: var(--white-bgc);
-    z-index: 1;
+    z-index: 99999;
 }
 
 
@@ -159,7 +159,7 @@ nav a {
     top: 0;
     padding-top: 30px;
     position: fixed;
-    z-index: 1;
+    z-index: 999999;
     background-color: rgba(0,0,0,0.4);
 }
 
@@ -170,9 +170,13 @@ nav a {
     height: 70vh;
     background-color: var(--white-bgc);
     border-radius: 5px;
+
+    opacity: 1;
+}
+
+#field-container {
     padding-left: 1em;
     padding-right: 1em;
-    opacity: 1;
 }
 
 #login-header-container {
@@ -208,9 +212,15 @@ nav a {
 }
 
 
-#close-btn {
-    cursor: pointer;
-    float: right;
+
+.close-btn {
+    width: 100%;
+    justify-content: flex-end;
+    padding: 5px;
+}
+
+#login-popup .close-btn {
+    margin-right: -5px;
 }
 
 /* Media queries */
@@ -223,9 +233,9 @@ nav a {
     }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 800px) {
     #login-popup {
-        width: 100%;
+        width: 98vw;
         height: 70vh;
         z-index: 23;
     }

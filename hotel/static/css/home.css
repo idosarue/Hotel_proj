@@ -9,31 +9,29 @@ main {
 
 .form-container {
     height: 120px;
+    position: relative;
 }
 
 form {
     width: 100%;
 }
-
+/* 
 #form-set {
     width: 30vw;
-}
+} */
 
 /* Dates display */
 
 .room-summary {
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     width: 35%;
-    height: 70px;
-    position: relative;
-    padding-right: 5em;
 }
 
 
 .guests, .btn {
     height: 40px;
-    width: 200px;
+    width: 100%;
     border: var(--button-border);
     border-radius: 3px;
     
@@ -54,24 +52,24 @@ form {
     cursor: pointer;
 }
 
-.guests:focus, .increment:focus, .increment-rooms:focus, .decrement:focus {
-    border: 2px solid var(--dark-blue);
-    box-shadow: inset 0 0 2px var(--dark-blue);
+/* .increment:focus, .increment-rooms:focus, .decrement:focus */
+.guests:focus {
+    border: 1px solid var(--dark-blue);
+    /* box-shadow: inset 0 0 2px var(--dark-blue); */
 }
 
 
 
 .date-container {
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .dates {
-    position: relative;
     justify-content: space-evenly;
     align-items: center;
-    margin-right: 30px;
-    width: 300px;
+    position: relative;
+    width: 26vw;
 }
 
 .day {
@@ -188,9 +186,9 @@ footer {
 .room-container {
     display: none;
     position: absolute;
-    /* right: 7.3vw; */
-    left: 0;
-    top: 55px;
+    left: 45vw;
+    width: 35%;
+    top: 11.5vh;
     background-color: var(--white-bgc);
     border: var(--grey-border);
     border-radius: 3px;
@@ -202,21 +200,27 @@ footer {
     border-bottom: var(--grey-border);
 }
 
-.remove-room {
+.remove-room, .increment-rooms, .increment {
     align-self: center;
     font-size: 1.5em;
     color: var(--button-color);
     font-weight: 100;
 }
 
-.increment, .increment-rooms, .decrement {
+.increment-rooms {
+    transform: rotate(45deg);
+}
+
+.rotate {
+    transform: rotate(45deg);
+    font-weight: 100;
+}
+
+.decrement, .increment  {
     border-radius: 50%;
-    width: 30px;
-    padding-bottom: .3em;
-    font-size: 1.2em;
-    padding-bottom: 3px;
+    font-size: 1.4em;
     background-color: var(--white-bgc);
-    border: 1px solid;
+    border: none;
     color: var(--button-color);
     cursor: pointer;
 }
@@ -228,8 +232,52 @@ footer {
 }
 
 
-
 #date-overlay {
     position: absolute;
     inset: 0;
+}
+
+.disabled {
+    opacity: 0.6 ;
+    color: grey;
+    cursor: not-allowed;
+}
+
+
+/* Media queries */
+/* 
+@media only screen and (max-width: 1000px) {
+    #login-popup {
+        width: 50%;
+        height: 70vh;
+        z-index: 23;
+    }
+} */
+
+@media only screen and (max-width: 700px) {
+    .date-container {
+        justify-content: space-evenly;
+    }
+
+    .dates {
+        justify-content: space-evenly;
+        width: 50vw;
+    }
+
+    .room-summary {
+        flex-direction: column;
+        width: 40%;
+    }
+
+    .room-container{
+        width: 98vw;
+        left: 1vw;
+        right: 1vw;
+        top: 13vh;
+    }
+
+    .calendar-container {
+        flex-direction: column;
+    }
+
 }

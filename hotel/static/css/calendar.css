@@ -17,9 +17,14 @@
     padding: 0 .5em 1em .5em;
     width: max-content;
     justify-content: space-between;
-    top: 8.3vh;
-    left: 1.6em; 
-    display: none;   
+    top: 12vh;
+    left: 23vw; 
+    display: none;  
+    z-index: 1; 
+}
+
+.calendar-popup .close-btn {
+    margin-bottom: 20px;
 }
 
 
@@ -63,4 +68,24 @@
 
 .days > div, .weekdays > div {
     padding: .3vw;
+}
+
+
+@media only screen and (max-width: 800px) {
+
+    .calendar-container {
+        flex-direction: column;
+    }
+
+    .calendar-popup {
+        width: 98vw;
+        left: 1vw;
+        right: 1vw;
+        top: -1vh;
+        padding-bottom: 0;
+    }
+
+    .calendar {
+        font-size: 1em;
+    }
 }

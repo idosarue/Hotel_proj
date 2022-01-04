@@ -15,7 +15,6 @@
 
 {% block content %}
 
-{% include 'partials/navbar.html' %}
 <main>
     <!-- <div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
         <form method="post">
@@ -26,6 +25,40 @@
 
 
     <div class="form-container flex flex-center">
+
+        <div class="calendar-popup flex flex-column popup">
+            <i class="fas fa-times close-btn flex"></i>
+            <div id="calendar-navigation" class="flex space-between items-center">
+                <p class="prev disabled">&lt;</p>
+                <p class="next">&gt;</p>
+            </div>
+
+            <div class="calendar-container flex">
+                <div class="first-calendar calendar">
+                    <div class="month">
+                        <div class="date">
+                            <h3></h3>
+                        </div>
+                    </div>
+                    <div class="weekdays">
+                    </div>
+                    <div class="days">
+                    </div>
+                </div>
+                
+                <div class="calendar second-calendar">
+                    <div class="second-cal-month month">
+                        <div class="second-cal-date date">
+                            <h3></h3>
+                        </div>
+                    </div>
+                    <div class="second-cal-weekdays weekdays">
+                    </div>
+                    <div class="second-cal-days days">
+                    </div>
+                </div>
+            </div>
+        </div>
         <form id="bookingSearchForm" action="{% url 'rooms' %}" method='GET'>
             {{form.as_p}}
             <div class="date-container flex">
@@ -48,38 +81,7 @@
 
                         <div id="date-overlay" class="clickable"></div>
                     </div>
-                    <div class="calendar-popup flex flex-column popup">
-                        <div id="calendar-navigation" class="flex space-between items-center">
-                            <p class="prev disabled">&lt;</p>
-                            <p class="next">&gt;</p>
-                        </div>
 
-                        <div class="calendar-container flex">
-                            <div class="first-calendar calendar">
-                                <div class="month">
-                                    <div class="date">
-                                        <h3></h3>
-                                    </div>
-                                </div>
-                                <div class="weekdays">
-                                </div>
-                                <div class="days">
-                                </div>
-                            </div>
-                            
-                            <div class="calendar second-calendar">
-                                <div class="second-cal-month month">
-                                    <div class="second-cal-date date">
-                                        <h3></h3>
-                                    </div>
-                                </div>
-                                <div class="second-cal-weekdays weekdays">
-                                </div>
-                                <div class="second-cal-days days">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="room-summary flex">
@@ -87,11 +89,12 @@
                         <span id="room-counter">1 Room</span> <span id="guests-counter">1 Guest</span> 
                     </button>
                     <div class="room-container flex space-between">
+                        <div class="fas fa-times close-btn flex"></div>
                         <div id="form-set">
 
                         </div>
-                        <div class="add-container">
-                            <button class="increment-rooms" type="button" id="add-more">+</button>Add Room
+                        <div class="add-container flex">
+                            <span class="far fa-times-circle increment-rooms clickable" type="button" id="add-more"></span>Add Room
                         </div> 
                     </div>
                     <button class='btn btn-primary' type="submit">Find a booking</button>

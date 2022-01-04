@@ -4,24 +4,24 @@
 export function createRoom(num){
     let newRoom = 
     `<div class="room flex" id="room${num}">
-        <div class="far fa-times-circle remove-room hidden" id="remove-room${num}"></div>
+        <div class="far fa-times-circle remove-room hidden clickable" id="remove-room${num}"></div>
         <p>Room ${num}</p>
         <div class="show-val-adults flex flex-column flex-center">
             <label for="increment-${num}-adults">Adults</label>
             <div class="con flex space-between">
                 <input class='adults-input' id='room-${num}-adults' name='room-${num}-adults' type="hidden" value="1">   
-                <button class="increment increment-adults" type="button">+</button>
+                <button class="increment increment-adults far fa-times-circle rotate" type="button"></button>
                 <span>1</span>
-                <button class="decrement decrement-adults disabled" disabled='true' type="button">-</button>
+                <button class="decrement decrement-adults disabled fal fa-minus-circle" disabled='true' type="button"></button>
             </div>
         </div>
         <div class="show-val-children flex flex-column flex-center">
             <label for="increment-${num}-children">Children</label>
             <div class="con flex space-between">
                 <input class='children-input' id='room-${num}-children' name='room-${num}-children' type="hidden" value="0">
-                <button class="increment increment-children" type="button">+</button>
+                <button class="increment increment-children far fa-times-circle rotate" type="button"></button>
                 <span>0</span>
-                <button class="decrement decrement-children disabled" disabled='true' type="button">-</button>
+                <button class="decrement decrement-children disabled fal fa-minus-circle" disabled='true' type="button"></button>
             </div>
         </div>
     </div>

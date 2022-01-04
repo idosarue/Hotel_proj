@@ -21,8 +21,10 @@
 <div id="login-container" class="flex justify-center">
     
     <div id="login-popup">
+        <i class="fas fa-times close-btn flex"></i>
         <div id="login-header-container">
-            <i id="close-btn" class="fas fa-times"></i>
+            
+
             <h3 class="login-header">Sign In</h3>
         </div>
        <form id="login-form" action="{% url 'login' %}" method="POST">

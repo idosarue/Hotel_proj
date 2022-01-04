@@ -49,11 +49,12 @@ class EditProfileForm(forms.ModelForm):
 
 class UserLoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': '', 'autocomplete': 'off'}))
+        attrs={'class': 'form-control', 'id': 'login_username', 'autocomplete': 'off'}))
     password = forms.CharField(widget=forms.PasswordInput(
         attrs={
             'class': 'form-control',
             'placeholder': '',
+            'id' : 'login_password'
         }
 ))
 

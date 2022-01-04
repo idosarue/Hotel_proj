@@ -15,7 +15,7 @@ $('.guests').click(() => {
 $(document).click((e) => {
     // check to see if an element has class to avoid errors
     if ($(e.target).attr('class')){
-        if (!Array.from($(e.target).parents()).includes(roomContainer[0]) && e.target != roomContainer[0] && e.target != $('.guests')[0] && !($(e.target).attr('class').includes('remove-room'))) {
+        if (!Array.from($(e.target).parents()).includes(roomContainer[0]) && e.target != roomContainer[0] && e.target != $('.guests')[0] || $(e.target).attr('class') == 'fas fa-times close-btn flex'){
             roomContainer.css('display', 'none')
         }
     }
@@ -34,12 +34,14 @@ $('#login-btn').click(() => {
 
 $(loginContainer).click((e) => {
     // check to see if an element has an id to avoid errors
-    if (e.target.id){
-        if(e.target == loginContainer[0] || e.target.id == 'close-btn'){
+    if ($(e.target).attr('class')){
+        log($(e.target).attr('class'))
+        if(e.target == loginContainer[0] || $(e.target).attr('class') == 'fas fa-times close-btn flex'){
             loginContainer.css('display', 'none')
         }
     }
 })
+
 
 
 $(document).click((e) => {
@@ -49,7 +51,7 @@ $(document).click((e) => {
     if (e.target == $('#date-overlay')[0]){
         if (calendarPopUp.css('display') == 'none') return calendarPopUp.css('display', 'block')
         calendarPopUp.css('display', 'none')
-    }else if (calendarPopUp.find($(target)).length == 0){
+    }else if (calendarPopUp.find($(target)).length == 0 || $(e.target).attr('class') == 'fas fa-times close-btn flex'){
         calendarPopUp.css('display', 'none')
     }
 
