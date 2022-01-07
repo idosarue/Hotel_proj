@@ -114,8 +114,7 @@ form {
 }
 
 .main-image {
-    width: 90%;
-    height: 80vh;
+    width:85%;
     border-radius: 3px;
 }
 
@@ -133,7 +132,7 @@ form {
 
 /* Image grid */
 
-.container {
+.bottom-container {
     padding: 5vw;
 }
 
@@ -166,7 +165,54 @@ form {
     bottom: 0;
     background-color: black;
     opacity: 0.3;
+    transition: 1s;
+
 }
+
+.img-grid div::after {
+    transition: 0.7s;
+}
+
+.img-grid div::after {
+    display: block;
+    position: absolute;
+    color: white;
+    right: 0;
+    bottom: 1px;
+    left: 0;
+    text-align: center;
+    font-size: 1.4em;
+}
+
+.img-grid div:nth-child(1):after {
+    content: 'Make your stay memorable';
+}
+
+.img-grid div:nth-child(2):after {
+    content: 'Relax into our luxury';
+}
+
+.img-grid div:nth-child(3):after {
+    content: 'Leave stress behind';
+}
+
+.img-grid div:nth-child(4):after {
+    content: 'Celebrate life with us';
+}
+.img-grid div:nth-child(5):after {
+    content: 'An experience of wellness';
+}
+
+.img-grid div:nth-child(6):after {
+    content: 'If you can dream it, we can do it';
+}
+
+.img-grid div:hover::after {
+    bottom: 40%;
+    transition: 0.7s;
+}
+
+
 
 /* footer */
 
@@ -179,6 +225,13 @@ footer {
 .contact {
     color: var(--white-bgc);
     font-size: 2em;
+    transition: 0.4s;
+}
+
+.contact:hover {
+    transform: scale(1.2);
+    transition: 0.4s;
+    color: var(--button-color);
 }
 
 
@@ -278,6 +331,20 @@ footer {
 
     .calendar-container {
         flex-direction: column;
+    }
+
+    .img-text-header {
+        font-size: 1.3em;
+    }
+
+    p.img-text{
+        font-size: .8em;
+    }
+
+
+    .img-grid {
+        grid-template-columns: 100%;
+        grid-template-rows: repeat(6, 1fr);
     }
 
 }

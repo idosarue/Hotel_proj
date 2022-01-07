@@ -5,13 +5,25 @@
     --nav-border: solid 3px var(--dark-blue);
     --button-border: solid 1px var(--dark-blue);
     --button-color: #0e54a8;
-    --grey-border: solid 0.3px lightgrey;
-    --white-bgc: white
+    --grey-border: solid 1px lightgrey;
+    --white-bgc: white;
+    --light-blue: rgb(0,156,222)
 }
+
+
+
 
 * {
     box-sizing: border-box;
 }
+
+body, html {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: rgba(255, 255, 255, 0.925);
+    min-height: 100%;
+}
+
 
 /* Utility classes */
 .flex {
@@ -57,6 +69,7 @@
     cursor: pointer;
 }
 
+
 /* Forms */
 
 .form-control, .form-control > * {
@@ -71,6 +84,11 @@
     font-size: 1em;
     font-family: inherit;
     border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: var(--light-blue);
 }
 
 
@@ -82,13 +100,20 @@
     box-shadow: 0 0 2.6px;
 }
 
-/* End of utility */
-body, html {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: rgba(255, 255, 255, 0.925);
+.card {
+    background-color: var(--white-bgc);
+    border: var(--grey-border);
+    border-radius: 3px;
+    box-shadow: 0 0 2.6px;
 }
 
+.container {
+    margin-top: 25vh;
+    width: 100%;
+}
+
+
+/* End of utility */
 
 .links {
     width: 140px;
@@ -99,7 +124,6 @@ body, html {
 /* nav bar styling */
 
 nav {
-    position: fixed;
     width: 100%;
     height: 90px;
     overflow: hidden;
@@ -165,19 +189,15 @@ nav a {
 
 
 
-#login-popup {
+.login-popup {
     width: 30vw;
     height: 70vh;
     background-color: var(--white-bgc);
     border-radius: 5px;
-
+    padding: 0 .5em;
     opacity: 1;
 }
 
-#field-container {
-    padding-left: 1em;
-    padding-right: 1em;
-}
 
 #login-header-container {
     padding-top: 10px;
@@ -195,25 +215,44 @@ nav a {
     height: 80%;
 }
 
-#field-container {
+/* Signup form */
+#signup-card {
+    padding: 20px;
+}
+
+#signup-form {
+    height: 100%;
+}
+
+#signup-submit {
+    margin-top: 10px;
+}
+
+
+.field-container {
     height: 70%;
     justify-content: space-evenly;
 }
+
+.card .field-container {
+    height: 100%;
+}
+
 
 .field input {
     border: var(--grey-border);
     font-size: inherit;
     font-family: inherit;
+
 }
 
 .field input:focus {
-    border: 2px solid var(--dark-blue);
+    border: inset 4px solid var(--dark-blue);
     box-shadow: inset 0 0 2px var(--dark-blue);
 }
 
 
-
-.close-btn {
+.close-container {
     width: 100%;
     justify-content: flex-end;
     padding: 5px;
@@ -223,20 +262,63 @@ nav a {
     margin-right: -5px;
 }
 
+
+
+/* footer */
+
+footer {
+    height: 100px;
+    width: 100%;
+    background-color: var(--dark-blue);
+    position: relative;
+    bottom: 0;
+}
+
+.contact {
+    color: var(--white-bgc);
+    font-size: 2em;
+    transition: 0.4s;
+}
+
+.contact:hover {
+    transform: scale(1.2);
+    transition: 0.4s;
+    color: var(--button-color);
+}
+
+.errors {
+    margin: 5px 0;
+    text-decoration: lightcoral underline;
+}
+
+
 /* Media queries */
 
 @media only screen and (max-width: 1000px) {
-    #login-popup {
+    .login-popup {
         width: 50%;
         height: 70vh;
         z-index: 23;
     }
 }
 
-@media only screen and (max-width: 800px) {
-    #login-popup {
+@media only screen and (max-width: 830px) {
+    .login-popup {
         width: 98vw;
         height: 70vh;
         z-index: 23;
+    }
+
+    #signup-container {
+        width: 98vw;
+    }
+
+
+    .container {
+        margin-top: 30vh;
+    }
+
+    .form-control {
+        height: 3em;
     }
 }

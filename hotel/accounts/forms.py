@@ -3,11 +3,19 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Authenti
 from .models import NewUser, Profile
 from django.utils.translation import gettext as _
 
-
 class CustomUserCreationForm(UserCreationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['password2'].label = 'Confirm Password'
+        self.fields['password2'].label = 'Confirm Password'
+
     class Meta:
         model = NewUser
         fields = ('username', 'email')
+
+        widgets = {
+            'password': forms.PasswordInput(attrs={'label': 'Confirm Password'}),
+        }
 
 class CustomUserChangeForm(UserChangeForm):
 
@@ -19,15 +27,13 @@ class CustomUserChangeForm(UserChangeForm):
 class EditProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['phone_number', 'date_of_birth']
+        fields = ['phone_number']
 
         widgets = {
-            'date_of_birth': forms.DateInput(attrs={'type':'date', 'placeholder':'Select a date', 'required': True}),
             'phone_number': forms.DateInput(attrs={'required': True}),
         }
 
         labels = {
-            "date_of_birth": _("date of birth"),
             "phone_number": _("Phone Number")
         }
 
@@ -65,12 +71,10 @@ class ProfileForm(forms.ModelForm):
         exclude = ['user']
 
         widgets = {
-            'date_of_birth': forms.DateInput(attrs={'type':'date', 'placeholder':'Select a date','required': True}),
             'phone_number': forms.DateInput(attrs={'required': True}),
         }
 
         labels = {
-            "date_of_birth": _("date of birth"),
             "phone_number": _("Phone Number")
         }
 

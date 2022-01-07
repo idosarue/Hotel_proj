@@ -81,8 +81,6 @@ class NewUser(AbstractBaseUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(NewUser, on_delete=models.CASCADE)
-    date_of_birth = models.DateField(null=True)
     phone_number = PhoneNumberField(unique=True, null=True)
-
     def __str__(self):
         return f'{self.user}' 

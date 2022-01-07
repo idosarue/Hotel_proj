@@ -18,11 +18,11 @@ class RoomsDateForm(forms.Form):
     check_in_date = forms.CharField(widget=forms.HiddenInput(attrs={'id': 'check_in_date'}))
     check_out_date = forms.DateField(widget=forms.HiddenInput(attrs={'id': 'check_out_date'}))
 
-    def clean(self):
-        data = self.cleaned_data
-        if data['check_in_date'] > data['check_out_date']:
-            raise forms.ValidationError('Check in date must be after check out date.')
-        return data
+    # def clean(self):
+    #     data = self.cleaned_data
+    #     if data['check_in_date'] > data['check_out_date']:
+    #         raise forms.ValidationError('Check in date must be after check out date.')
+    #     return data
 
 
 

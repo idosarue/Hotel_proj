@@ -5,7 +5,8 @@ const calLog = console.log.bind(console, "popups")
 let roomContainer = $('.room-container')
 
 
-$('.guests').click(() => {
+$('.guests').click((e) => {
+
     if (roomContainer.css('display') == 'none') return roomContainer.css('display', 'block')
     roomContainer.css('display', 'none')
 })
@@ -13,12 +14,16 @@ $('.guests').click(() => {
 // Hide the form
 
 $(document).click((e) => {
-    // check to see if an element has class to avoid errors
-    if ($(e.target).attr('class')){
-        if (!Array.from($(e.target).parents()).includes(roomContainer[0]) && e.target != roomContainer[0] && e.target != $('.guests')[0] || $(e.target).attr('class') == 'fas fa-times close-btn flex'){
+    try {
+        if (!$(e.target).attr('class').split(' ').includes('remove-room') && e.target == $('#room-close')[0]  ){
+            roomContainer.css('display', 'none')
+        }
+    }catch (e) {
+        if (e.target == document) {
             roomContainer.css('display', 'none')
         }
     }
+
 })
 
 // Display the login form
@@ -35,7 +40,6 @@ $('#login-btn').click(() => {
 $(loginContainer).click((e) => {
     // check to see if an element has an id to avoid errors
     if ($(e.target).attr('class')){
-        log($(e.target).attr('class'))
         if(e.target == loginContainer[0] || $(e.target).attr('class') == 'fas fa-times close-btn flex'){
             loginContainer.css('display', 'none')
         }

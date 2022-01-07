@@ -1,3 +1,4 @@
+from sys import is_finalizing
 from django.db import models
 from accounts.models import Profile
 
@@ -6,9 +7,9 @@ from accounts.models import Profile
 class Booking(models.Model):
     check_in_date = models.DateField()
     check_out_date = models.DateField()
-    room = models.ForeignKey('Room', on_delete=models.PROTECT)
+    rooms = models.ManyToManyField('Room')
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
- 
+    is_approved = models.BooleanField(default=False)
     # def __str__(self):
     #     return f'{self.room_type.name}'
 
@@ -45,11 +46,11 @@ class Room(models.Model):
     max_adults = models.IntegerField(default=1)
     max_children = models.IntegerField(null=True)
 
-    def __str__(self):
-        return f'{self.room_type.name, self.room_price.price, self.number_of_adult_beds, self.number_of_children_beds}'
+    # def __str__(self):
+    #     return f'{self.room_type.name, self.room_price.price, self.number_of_adult_beds, self.number_of_children_beds}'
 
     def is_vacant(self, start_date, end_date):
-        if self.booking_set.filter(check_out_date__gt=start_date, check_in_date__lt=end_date).exists():
+        if self.booking_set.filter(check_out_date__gt=start_date, check_in_date__lt=end_date, is_approved=True).exists():
             return False
         return True
 

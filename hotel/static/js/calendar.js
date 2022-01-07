@@ -35,6 +35,9 @@ const weekDays = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 const checkInInput = $('#check_in_date')
 const checkOutInput = $('#check_out_date')
 
+checkInInput.val(date.toLocaleDateString())
+checkOutInput.val(new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1).toLocaleDateString())
+
 const displayDateHeaders = (checkIn, checkOut) => {
     $("#check-in-day").text(checkIn.getDate())
     $('#check-out-day').text(checkOut.getDate())

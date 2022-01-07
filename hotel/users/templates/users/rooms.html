@@ -3,6 +3,10 @@
 {% load static %}
 
 
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/rooms.css' %}">
+
+{% endblock %}
 
 {% block title %}
 
@@ -22,15 +26,40 @@
     {% endfor %}
 </ul>
 {% endif %}
-<div>
-    <ul>
-        {% for obj in rooms %}
-            {% for room in obj %}
+<div id="room-container" class="flex flex-center">
+    {{booking}}
+    <div class="grid-row" data-row-count="{{rooms|length}}">
+            {% for room in booking.rooms.all %}
+            <div class="card room-card">
                 <img class="room-image" src="{% static 'images/' %}{{room.room_type.image}}" alt="room">
-                <li>{{room}}</li>
+                {{room}}
+                <a href="{% url 'next_room' room.id booking.id last_booking length %}">Book {{room.room_price}}</a>
+            </div>
             {% endfor %}
-        <hr>
-        {% endfor %}
-    </ul>
+    </div>
 </div>
+
+
+
+
+
+
 {% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/rooms.js' %}"></script>
+{% endblock %}
+
+<div id="room-container" class="flex flex-center">
+    <div class="grid-row" data-row-count="{{rooms|length}}">
+    {% for obj in rooms %}
+        {% for room in obj %}
+        <div class="card room-card">
+            <img class="room-image" src="{% static 'images/' %}{{room.room_type.image}}" alt="room">
+            {{room}}
+            <a href="{{room.id}}{{booking.id}}">Book Room ${{room.room_price}}</a>
+        </div>
+        {% endfor %}
+        {% endfor %}
+    </div>
+</div>

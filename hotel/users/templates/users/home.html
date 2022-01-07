@@ -27,7 +27,7 @@
     <div class="form-container flex flex-center">
 
         <div class="calendar-popup flex flex-column popup">
-            <i class="fas fa-times close-btn flex"></i>
+            <div class="close-container flex"><i class="fas fa-times close-btn flex"></i></div>
             <div id="calendar-navigation" class="flex space-between items-center">
                 <p class="prev disabled">&lt;</p>
                 <p class="next">&gt;</p>
@@ -59,7 +59,8 @@
                 </div>
             </div>
         </div>
-        <form id="bookingSearchForm" action="{% url 'rooms' %}" method='GET'>
+        <form id="bookingSearchForm" method='POST'>
+            {% csrf_token %}
             {{form.as_p}}
             <div class="date-container flex">
                 
@@ -85,11 +86,11 @@
                 </div>
 
                 <div class="room-summary flex">
-                    <button type='button' class="guests flex flex-center">
+                    <button id="guests" type='button' class="guests flex flex-center">
                         <span id="room-counter">1 Room</span> <span id="guests-counter">1 Guest</span> 
                     </button>
-                    <div class="room-container flex space-between">
-                        <div class="fas fa-times close-btn flex"></div>
+                    <div id="room-container" class="room-container flex space-between">
+                        <div class="close-container flex"><i id="room-close" class="fas fa-times close-btn"></i></div>
                         <div id="form-set">
 
                         </div>
@@ -113,37 +114,29 @@
 
     <section>
         <div class="img-container">
-            <img class="main-image" src="{% static 'images/backghotel.jpg' %}" alt="">
+            <img class="main-image" src="{% static 'images/hotelfront.jpg' %}" alt="">
 
             <div class="img-text">
-                <p class="img-text-header">Lorem ipsum dolor sit.</p>
-                <p class="img-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora, deleniti!</p>
+                <p class="img-text-header">One place, another world</p>
+                <p class="img-text">Welcome to an oasis of luxury & tranquility</p>
             </div>
         </div>
     </section>
 
     <section>
-        <div class="container">
-            <p class="img-text-header">Lorem ipsum dolor sit.</p>
+        <div class="bottom-container">
+            <p class="img-text-header">Welcome to heaven on earth</p>
             <div class="img-grid">
+                <div><img src="{% static 'images/beach1.jpg' %}" alt=""></div>
+                <div><img src="{% static 'images/beach2.jpg' %}" alt=""></div>
+                <div><img src="{% static 'images/beach3.jpg' %}" alt=""></div>
+                <div><img src="{% static 'images/beach4.jpg' %}" alt=""></div>
                 <div><img src="{% static 'images/backghotel.jpg' %}" alt=""></div>
-                <div><img src="{% static 'images/backghotel.jpg' %}" alt=""></div>
-                <div><img src="{% static 'images/backghotel.jpg' %}" alt=""></div>
-                <div><img src="{% static 'images/backghotel.jpg' %}" alt=""></div>
-                <div><img src="{% static 'images/backghotel.jpg' %}" alt=""></div>
-                <div><img src="{% static 'images/backghotel.jpg' %}" alt=""></div>
+                <div><img src="{% static 'images/pool.jpg' %}" alt=""></div>
             </div>
         </div>
     </section>
 </main>
-
-<footer class="flex flex-center">
-    <div class="links flex space-around">
-        <a class='contact' target="blank" href="https://github.com/idosarue"><i class="fab fa-github"></i></a>
-        <a class='contact' target="blank" href="https://www.linkedin.com/in/ido-sarue-66aa79214/"><i class="fab fa-linkedin"></i></a>
-    </div>
-</footer>
-
 
 
 {% endblock %}

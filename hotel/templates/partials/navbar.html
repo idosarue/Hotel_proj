@@ -20,17 +20,15 @@
 
 <div id="login-container" class="flex justify-center">
     
-    <div id="login-popup">
-        <i class="fas fa-times close-btn flex"></i>
+    <div class="login-popup">
+        <div class="close-container flex"><i class="fas fa-times close-btn flex"></i></div>
         <div id="login-header-container">
-            
-
             <h3 class="login-header">Sign In</h3>
         </div>
        <form id="login-form" action="{% url 'login' %}" method="POST">
            {% csrf_token %}
 
-        <div id="field-container" class="flex flex-column">
+        <div class="flex flex-column field-container">
             {% for field in login_form %}
             <div class="field form-control">
                     <label for="{{field.id_for_label}}">{{field.label}}</label>

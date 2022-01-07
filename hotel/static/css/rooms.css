@@ -1,0 +1,30 @@
+/* Room styling */
+
+#room-container {
+    margin-bottom: 100px;
+}
+
+.room-card {
+    box-shadow: none;
+    border-radius: 3px;
+    height: 120%;
+}
+
+.room-image {
+    width: 100%;
+    border-radius: inherit;
+}
+
+.grid-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    padding: 0 5vw;
+    gap: 5vw;
+}
+
+.room-divider {
+    width: 100%;
+    height: 200px;
+    background-color: blue;
+}

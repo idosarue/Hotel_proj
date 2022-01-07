@@ -26,7 +26,7 @@ def create_room_types():
 def create_rooms():
     prices = RoomPrice.objects.all()
     room_types = RoomType.objects.all()
-    for num in range(3):
+    for num in range(9):
         # Loop through the ziped lists, None for a single room that doesnt have children
         for price, room_type, max_adults, max_children in list(zip(prices, room_types, [1,2,3], [0,2,2])):
             Room.objects.create(number_of_adult_beds = max_adults, number_of_children_beds = max_children, room_price = price, room_type = room_type, max_adults=max_adults, max_children=max_children)
@@ -37,49 +37,28 @@ def create_rooms():
 
 # ************* tests***********
 
-get_request = {'room-1-children': "0", 'room-1-adults': '1', 'room-2-children': '0', 'room-2-adults': "1", 'check_in_date': '2021-12-01', 'check_out_date': '2021-12-22'}
-
-def validate_dates(get_request):
-    try:
-        check_in_date = datetime.strptime(get_request['check_in_date'], '%Y-%m-%d').date()
-        check_out_date = datetime.strptime(get_request['check_out_date'], '%Y-%m-%d').date()
-    except (ValueError, KeyError):
-        check_in_date = date.today()
-        check_out_date = check_in_date + dt.timedelta(days=1)
-    if check_in_date < check_out_date: return {'check_in_date' : check_in_date, 'check_out_date' : check_out_date}
-    return {'check_in_date' : check_in_date, 'check_out_date' : check_in_date + dt.timedelta(days=1)}
 
 
-def validate_guests(get_request, room_count):
-    try:
-        rooms2 = [
-        RoomType.objects.filter(room__max_children__gte=int(get_request[f'room-{num + 1}-children']),
-        room__max_adults__gte = int(get_request[f'room-{num + 1}-adults'])).distinct()
-        for num in range(room_count)]
-    except KeyError:
-        return 'an error occurd'
-
-    return rooms2
 
 
-def display_rooms(rooms):
+def  create_booking():
+    # Booking.objects.create(check_in_date=date(2022, 11, 1), check_out_date=date(2022, 11, 12))
+    # booking = Booking.objects.first()
+    # booking.room.add(Room.objects.all()[1])
+    # # print(Room.objects.first().booking)
+    # print(Room.objects.all()[1].booking_set.all())
+    print(Booking.objects.all())
+    
+# create_booking()
+
+def display_rooms():
     li = []
-    check_in_date = validate_dates(get_request)['check_in_date']
-    check_out_date = validate_dates(get_request)['check_out_date']
-    print(check_in_date)
-    try:
-        for index, obj in enumerate(rooms):
-            li.append(list(room.room_set.all()[index] for room in obj))
-    except IndexError:
-        return 'no available rooms'
+    check_in_date = datetime.strptime('1/7/2022', '%m/%d/%Y').date()
+    check_out_date = datetime.strptime('1/8/2022', '%m/%d/%Y').date()
 
-    for obj in li:
-        for room in obj:
-            if room.is_vacant('2021-12-13', '2021-12-14'):
-                continue
-            print('no')
-            return
+    li.append([room for room in Room.objects.all()[:10] if room.is_vacant(check_in_date, check_out_date)]) 
 
     return li
 
 
+print(display_rooms())

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/rooms.css' %}">
+
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+<h1>check_out</h1>
+<h2>{{check_in_date}} {{check_out_date}}</h2>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% for booking in bookings %}
+    {{booking}}
+{% endfor %}
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/rooms.js' %}"></script>
+{% endblock %}
+
