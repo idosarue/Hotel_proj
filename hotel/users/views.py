@@ -41,19 +41,20 @@ class RoomsResults(ListView):
         except ValueError:
             return False
 
-    def paginate_bookings(self):
-        bookings = self.get_booking()
-        paginator = Paginator(bookings, 1)
-        page_num = self.request.GET.get('page')
-        page_obj = paginator.get_page(page_num)
-        return page_obj 
+    # def paginate_bookings(self):
+    #     bookings = self.get_booking()
+    #     paginator = Paginator(bookings, 1)
+    #     page_num = self.request.GET.get('page')
+    #     page_obj = paginator.get_page(page_num)
+    #     return page_obj 
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if not self.get_booking():
             return messages.error(self.request, 'no avilable rooms')
-
-        context['booking'] = self.get_booking()[0]  
+        print(self.get_booking()[0])
+        context['rooms'] = sorted(self.get_booking()[0].rooms.all(), key=lambda x: x.room_price.price)
+        context['booking'] = self.get_booking()[0]
         context['request'] = self.request.GET
         context['check_in_date'] = self.get_booking()[0].check_in_date
         context['check_out_date'] = self.get_booking()[0].check_out_date
@@ -72,7 +73,8 @@ def next_room(request, room_id, booking_id, last_booking, length):
     booking.is_approved = True
     booking.save()
     if booking_id + 1 <= last_booking:
-        return render(request, 'users/rooms.html', {'booking': Booking.objects.get(id=booking_id+1), 'last_booking' : last_booking, 'length' : length})
+        booking = get_object_or_404(Booking, id=booking_id + 1)
+        return render(request, 'users/rooms.html', {'rooms': sorted(booking.rooms.all(), key=lambda x: x.room_price.price), 'booking' : Booking.objects.get(id=booking_id + 1),'last_booking' : last_booking, 'length' : length})
     else:
         last_booking += 1
         return render(request, 'users/check_out.html', {'bookings' : [Booking.objects.get(id=num) for num in range(last_booking - length, last_booking)]})

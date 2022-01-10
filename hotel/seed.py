@@ -37,19 +37,60 @@ def create_rooms():
 
 # ************* tests***********
 
-
-
+check_in_date = datetime.strptime('1/7/2022', '%m/%d/%Y').date()
+check_out_date = datetime.strptime('1/8/2022', '%m/%d/%Y').date()
 
 
 def  create_booking():
-    # Booking.objects.create(check_in_date=date(2022, 11, 1), check_out_date=date(2022, 11, 12))
-    # booking = Booking.objects.first()
-    # booking.room.add(Room.objects.all()[1])
-    # # print(Room.objects.first().booking)
-    # print(Room.objects.all()[1].booking_set.all())
-    print(Booking.objects.all())
-    
+    Booking.objects.create(check_in_date=check_in_date, check_out_date=check_out_date)
+    Booking.objects.first().rooms.add(Room.objects.first(), Room.objects.all()[1])
 # create_booking()
+
+
+request = {'room-1-children' : '0', 'room-1-adults': '1', 'room-2-children' : '0', 'room-2-adults': '3'}
+
+def check_vacant(room_type):
+    for room in room_type.room_set.all():
+        if room.is_vacant(check_in_date, check_out_date):
+            return room
+
+
+def validate_guests(request, room_count):
+    try:
+        rooms2 = [
+        RoomType.objects.filter(room__max_children__gte=[int(request[f'room-{num + 1}-children']) if request[f'room-{num + 1}-children'].isnumeric() and 0 < int(request[f'room-{num + 1}-children']) < 3  else 0][0],
+        room__max_adults__gte =[int(request[f'room-{num + 1}-adults']) if request[f'room-{num + 1}-adults'].isnumeric() and 1 < int(request[f'room-{num + 1}-adults']) < 4  else 1][0]).distinct()
+        for num in range(room_count)]
+
+        # rooms2 = [
+        # Room.objects.filter(max_children__gte=[int(request[f'room-{num + 1}-children']) if request[f'room-{num + 1}-children'].isnumeric() and 0 < int(request[f'room-{num + 1}-children']) < 3  else 0][0],
+        # max_adults__gte =[int(request[f'room-{num + 1}-adults']) if request[f'room-{num + 1}-adults'].isnumeric() and 1 < int(request[f'room-{num + 1}-adults']) < 4  else 1][0]).distinct()
+        # for num in range(room_count)]
+
+    except KeyError:
+        print('error')
+        return 
+
+    
+
+    check_in_date = datetime.strptime('1/7/2022', '%m/%d/%Y').date()
+    check_out_date = datetime.strptime('1/8/2022', '%m/%d/%Y').date()
+    bookings = [Booking.objects.create(check_in_date=check_in_date, check_out_date=check_out_date) for num in range(room_count)]
+
+    li = []
+    available_rooms = []
+    for num in range(room_count):
+        for obj in rooms2[num]:
+            bookings[num].rooms.add(check_vacant(obj))
+
+    
+    for booking in bookings:
+        print(booking.rooms.all())
+
+    return rooms2
+
+# validate_guests(request, 2)
+
 
 def display_rooms():
     li = []
@@ -61,4 +102,14 @@ def display_rooms():
     return li
 
 
-print(display_rooms())
+# print(display_rooms())
+
+
+def delete_bookings():
+    for booking in Booking.objects.all():
+        booking.delete()
+
+# delete_bookings()
+
+
+print(sorted(Booking.objects.get(id=240).rooms.all(), key=lambda x: x.room_price.price))

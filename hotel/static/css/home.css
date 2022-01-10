@@ -29,17 +29,6 @@ form {
 }
 
 
-.guests, .btn {
-    height: 40px;
-    width: 100%;
-    border: var(--button-border);
-    border-radius: 3px;
-    
-    cursor: pointer;
-    font-family: inherit;
-
-}
-
 .guests {
     background: var(--white-bgc);
 }

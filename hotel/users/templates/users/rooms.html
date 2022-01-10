@@ -15,8 +15,12 @@
 {% block content %}
 
 
+<div class="booking-date flex flex-center">
+    <span class="stay">Your Stay </span> 
+    <i class="far fa-calendar-alt"></i> 
+    Mon, Jan 10 – Tue, Jan 11, 2022Monday, January 10, 2022 through Tuesday, January 11, 2022(1 night) | 2 rooms for 2 adults
+</div>
 
-<h1>rooms</h1>
 <h2>{{check_in_date}} {{check_out_date}}</h2>
 
 {% if messages %}
@@ -27,13 +31,13 @@
 </ul>
 {% endif %}
 <div id="room-container" class="flex flex-center">
-    {{booking}}
     <div class="grid-row" data-row-count="{{rooms|length}}">
-            {% for room in booking.rooms.all %}
+            {% for room in rooms %}
             <div class="card room-card">
                 <img class="room-image" src="{% static 'images/' %}{{room.room_type.image}}" alt="room">
-                {{room}}
-                <a href="{% url 'next_room' room.id booking.id last_booking length %}">Book {{room.room_price}}</a>
+                <div class="card-bottom flex flex-center">
+                    <a class="btn btn-primary space-around" href="{% url 'next_room' room.id booking.id last_booking length %}"><span>Book</span> <span>{{room.room_price}}</span></a>
+                </div>
             </div>
             {% endfor %}
     </div>
