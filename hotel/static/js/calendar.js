@@ -1,5 +1,4 @@
 const log = console.log.bind(console,"calendar.html")
-
 // new date
 const date = new Date();
 let month = date.getMonth()

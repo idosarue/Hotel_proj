@@ -17,6 +17,7 @@ body, html {
     font-family: 'Poppins', sans-serif;
     background-color: rgba(255, 255, 255, 0.925);
     height: 100%;
+    position: relative;
 }
 
 *, *::after, *::before {
@@ -290,7 +291,6 @@ footer {
     height: 100px;
     width: 100%;
     background-color: var(--dark-blue);
-    margin-top: 10.3vh;
 }
 
 .contact {

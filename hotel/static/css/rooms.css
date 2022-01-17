@@ -134,3 +134,31 @@ a {
     background-color: lightskyblue;
 }
 
+/* Media Queries */
+
+@media only screen and (max-width: 700px) {
+
+    .grid-row {
+        display: grid;
+        grid-template-columns: 40vw;
+        gap: 10vh;
+    }
+
+    .booking-summary {
+        width: 40vw;
+    }
+
+    .booking-summary h3 {
+        font-size: .9em;
+    }
+
+    .booking-date {
+        height: 20vh;
+    }
+    .booking-date div {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+        
+}
