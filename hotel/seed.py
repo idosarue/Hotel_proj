@@ -109,7 +109,7 @@ def delete_bookings():
     for booking in Booking.objects.all():
         booking.delete()
 
-# delete_bookings()
+delete_bookings()
 
 
-print(sorted(Booking.objects.get(id=240).rooms.all(), key=lambda x: x.room_price.price))
+print(Room.objects.all())

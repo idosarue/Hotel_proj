@@ -1,5 +1,8 @@
 from django import forms
+from django.db.models import fields
 from django.forms import formset_factory, BaseFormSet
+
+from .models import Booking
 
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -13,6 +16,10 @@ class GuestsForm(forms.Form):
     adults = forms.IntegerField(required=True)
     children = forms.IntegerField()
 
+class someForm(forms.ModelForm):
+    class Meta:
+        model = Booking
+        fields = '__all__'
 
 class RoomsDateForm(forms.Form):
     check_in_date = forms.CharField(widget=forms.HiddenInput(attrs={'id': 'check_in_date'}))

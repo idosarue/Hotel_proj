@@ -205,11 +205,6 @@ form {
 
 /* footer */
 
-footer {
-    height: 100px;
-    width: 100%;
-    background-color: var(--dark-blue);
-}
 
 .contact {
     color: var(--white-bgc);

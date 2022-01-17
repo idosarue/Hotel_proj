@@ -1,4 +1,5 @@
 /* Room styling */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 
 #room-container {
     margin-bottom: 100px;
@@ -17,7 +18,7 @@
 
 .grid-row {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 30vw);
     grid-template-rows: 1fr;
     padding: 0 5vw;
     gap: 5vw;
@@ -33,6 +34,103 @@ a {
     text-decoration: none;
 }
 
+.card-btn {
+    height: 50px;
+    font-size: 1.1em;
+    padding: 0 10px;
+}
+
+.booking-date {
+    height: 8vh;
+    border-bottom: var(--grey-border);
+}
+
+.booking-date > div {
+    align-items: center;
+    
+}
+
+.booking-date > div > * {
+    padding: 0 10px;
+}
+
+.booking-date > div > span:last-child {
+    border-left: var(--grey-border);
+}
+
+.fa-calendar-alt {
+    font-size: 1.3em;
+}
+
 .stay {
     font-weight: bold;
+    font-size: 1.3em;
 }
+
+.people-icon {
+    margin-right: 2px;
+}
+
+.room-select {
+    padding: 5vh 5vw;
+}
+
+.room-summary {
+    padding: 0 5vw;
+}
+
+.room-select span {
+    color: var(--light-grey);
+}
+
+.room-select h1 {
+    margin: 0;
+}
+
+/* Room pills */
+
+.room {
+    border-radius: 100vw;
+    text-align: center;
+    width: max-content;
+    padding: 8px 18px;
+    margin-right: 10px;
+}
+
+.room.active {
+    border: 2px solid var(--light-button-blue);
+    color: var(--light-button-blue);
+}
+
+.room.disabled {
+    border: 2px solid var(--light-grey);
+}
+
+.booking-summary {
+    width: 23vw;
+}
+
+.booking-summary .card {
+    padding: 2vh 2vw;
+    box-shadow: none;
+    border-radius: 5px;
+}
+
+.booking-summary .card > div {
+    padding: 2vh 0;
+    box-shadow: 0 .5px lightgray, 0 -.5px lightgray;
+}
+
+
+.room-header {
+    margin-top: 0;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.current-room {
+    background-color: lightskyblue;
+}
+

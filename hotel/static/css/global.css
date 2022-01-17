@@ -7,21 +7,20 @@
     --button-color: #0e54a8;
     --grey-border: solid 1px lightgrey;
     --white-bgc: white;
-    --light-blue: rgb(0,156,222)
-}
-
-
-
-
-* {
-    box-sizing: border-box;
+    --light-blue: rgb(0,156,222);
+    --light-button-blue: #04167e;
+    --light-grey: rgba(85, 85, 85, 0.733);
 }
 
 body, html {
     margin: 0;
     font-family: 'Poppins', sans-serif;
     background-color: rgba(255, 255, 255, 0.925);
-    min-height: 100%;
+    height: 100%;
+}
+
+*, *::after, *::before {
+    box-sizing: border-box;
 }
 
 
@@ -33,6 +32,10 @@ body, html {
 .flex-center, .btn {
     justify-content: center;
     align-items: center;
+}
+
+.flex-start {
+    justify-content: flex-start;
 }
 
 .justify-center {
@@ -49,6 +52,10 @@ body, html {
 
 .space-around {
     justify-content: space-around;
+}
+
+.space-evenly {
+    justify-content: space-evenly;
 }
 
 .items-center {
@@ -283,8 +290,7 @@ footer {
     height: 100px;
     width: 100%;
     background-color: var(--dark-blue);
-    position: relative;
-    bottom: 0;
+    margin-top: 10.3vh;
 }
 
 .contact {
@@ -326,7 +332,6 @@ footer {
         width: 98vw;
     }
 
-
     .container {
         margin-top: 30vh;
     }
@@ -334,4 +339,6 @@ footer {
     .form-control {
         height: 3em;
     }
+
+
 }

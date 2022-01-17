@@ -1,3 +1,4 @@
+from operator import mod
 from sys import is_finalizing
 from django.db import models
 from accounts.models import Profile
@@ -10,6 +11,9 @@ class Booking(models.Model):
     rooms = models.ManyToManyField('Room')
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     is_approved = models.BooleanField(default=False)
+    adults = models.IntegerField(default=1)
+    children = models.IntegerField(default=0)
+    total_price = models.IntegerField(default=0)
     # def __str__(self):
     #     return f'{self.room_type.name}'
 
@@ -26,8 +30,6 @@ class CustomerPrice(models.Model):
 class RoomPrice (models.Model):
     price = models.IntegerField(default=700)
 
-    def __str__(self):
-        return f'{self.price}'
 
 class RoomType(models.Model):
     name = models.CharField(max_length=50)
@@ -45,9 +47,6 @@ class Room(models.Model):
     number_of_children_beds = models.IntegerField(null=True)
     max_adults = models.IntegerField(default=1)
     max_children = models.IntegerField(null=True)
-
-    # def __str__(self):
-    #     return f'{self.room_type.name, self.room_price.price, self.number_of_adult_beds, self.number_of_children_beds}'
 
     def is_vacant(self, start_date, end_date):
         if self.booking_set.filter(check_out_date__gt=start_date, check_in_date__lt=end_date, is_approved=True).exists():

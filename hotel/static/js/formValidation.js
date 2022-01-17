@@ -18,6 +18,31 @@ $(document).ready( () => {
     })
 })
 
+$('.create-btn').click((e) => {
+    e.preventDefault()
+    var serializedData = $(this).serialize();
+    $.ajax({
+        type: 'POST',
+        url: `/create/${$(e.target).attr('data-room')}/${$(e.target).attr('data-booking')}/`,
+        data: serializedData,
+        success: function (response) {
+            // on successfull creating object
+            // 1. clear the form.
+
+            console.log(serializedData)
+            console.log('serializedData')
+            window.location = '/'
+            // 2. focus to nickname input 
+            // location.reload(true)
+            // display the newly friend to table.
+        },
+        error: function (response) {
+            // alert the error if any error occured
+            console.log(response)
+        }
+    })
+})
+
 $("#login-form").submit(function (e) {
     // preventing from page reload and default actions
     e.preventDefault();

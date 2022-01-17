@@ -59,7 +59,7 @@
                 </div>
             </div>
         </div>
-        <form id="bookingSearchForm" method='POST'>
+        <form id="bookingSearchForm" method='POST' action="{% url 'rooms' %}">
             {% csrf_token %}
             {{form.as_p}}
             <div class="date-container flex">
